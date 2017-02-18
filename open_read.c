@@ -6,17 +6,17 @@ char	*open_read(char *file, char *str)
 	int	c;
 	int	fd;
 	char	buf[1];
-	char	t[500];
+	char	tmp[500];
 
 	c = 0;
 	fd = open(file, O_RDONLY);
 	if (fd < 0)
-		return ("error message");
+		return (NULL);
 	while ((x = read(fd, buf, 1)))
 	{
-		t[c] = buf[0];
+		tmp[c] = buf[0];
 		c++;
 	}
-	t[c] = '\0';
+	tmp[c] = '\0';
 	return (ft_strdup(tmp));
 }

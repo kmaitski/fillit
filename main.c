@@ -8,5 +8,7 @@ int	main(int argc, char **argv)
 	if (argc != 2)
 		return("error message here");
 	read_string = open_read(argv[1]);
-	validate_string = validate_create(read_string);
-
+	if (validate(read_string) == 1)
+		return (1);
+	return (0);
+}
