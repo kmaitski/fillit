@@ -1,25 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fillit.h                                           :+:      :+:    :+:   */
+/*   ft_putchar_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kmaitski <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/02/17 22:22:39 by kmaitski          #+#    #+#             */
-/*   Updated: 2017/02/18 15:42:20 by kmaitski         ###   ########.fr       */
+/*   Created: 2017/01/06 08:55:41 by kmaitski          #+#    #+#             */
+/*   Updated: 2017/02/02 15:41:36 by kmaitski         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FILLIT_H
-# define FILLIT_H
+#include "libft.h"
 
-# include "libft/libft.h"
-# include <fcntl.h>
-# include <stdio.h>
-
-char	*open_read(char *file);
-int	validate(char *read_string);
-int	check_piece(char *str);
-int	main(int argc, char **argv);
-
-#endif
+void	ft_putchar_fd(char c, int fd)
+{
+	write(fd, &c, 1);
+}

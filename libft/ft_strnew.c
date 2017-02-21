@@ -1,25 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fillit.h                                           :+:      :+:    :+:   */
+/*   ft_strnew.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kmaitski <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/02/17 22:22:39 by kmaitski          #+#    #+#             */
-/*   Updated: 2017/02/18 15:42:20 by kmaitski         ###   ########.fr       */
+/*   Created: 2017/01/05 13:58:48 by kmaitski          #+#    #+#             */
+/*   Updated: 2017/02/10 11:49:13 by kmaitski         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FILLIT_H
-# define FILLIT_H
+#include "libft.h"
 
-# include "libft/libft.h"
-# include <fcntl.h>
-# include <stdio.h>
+char	*ft_strnew(size_t size)
+{
+	char	*fresh;
+	size_t	x;
 
-char	*open_read(char *file);
-int	validate(char *read_string);
-int	check_piece(char *str);
-int	main(int argc, char **argv);
-
-#endif
+	fresh = (char *)malloc(size + 1);
+	if (fresh == NULL)
+		return (NULL);
+	x = 0;
+	while (x <= size)
+	{
+		fresh[x] = '\0';
+		x++;
+	}
+	return (fresh);
+}

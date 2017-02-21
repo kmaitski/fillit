@@ -1,25 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fillit.h                                           :+:      :+:    :+:   */
+/*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kmaitski <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/02/17 22:22:39 by kmaitski          #+#    #+#             */
-/*   Updated: 2017/02/18 15:42:20 by kmaitski         ###   ########.fr       */
+/*   Created: 2017/01/05 16:23:56 by kmaitski          #+#    #+#             */
+/*   Updated: 2017/02/10 11:49:32 by kmaitski         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FILLIT_H
-# define FILLIT_H
+#include "libft.h"
 
-# include "libft/libft.h"
-# include <fcntl.h>
-# include <stdio.h>
+char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
+{
+	unsigned int	x;
+	char			*new;
 
-char	*open_read(char *file);
-int	validate(char *read_string);
-int	check_piece(char *str);
-int	main(int argc, char **argv);
-
-#endif
+	x = 0;
+	if (!s || !f)
+		return (0);
+	new = (char *)malloc(sizeof(*s) * ft_strlen(s) + 1);
+	if (new == NULL)
+		return (0);
+	while (s[x] != '\0')
+	{
+		new[x] = f(x, s[x]);
+		x++;
+	}
+	new[x] = '\0';
+	return (new);
+}

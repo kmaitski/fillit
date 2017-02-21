@@ -23,7 +23,7 @@ int		check_piece(char *str)
 		{
 			if (str[c + 1] == '#' && str[c + 2] == '#' && str[c + 3] == '#')
 			   return (1);
-			if (str[c + 5] == '#' && strc[c + 10] == '#' && str[c + 15] == '#')
+			if (str[c + 5] == '#' && str[c + 10] == '#' && str[c + 15] == '#')
 				return (1);
 			if (str[c + 1] == '#' && str[c + 4] == '#' && str[c + 5] == '#')
 				return (1);

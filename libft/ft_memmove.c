@@ -1,25 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fillit.h                                           :+:      :+:    :+:   */
+/*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kmaitski <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/02/17 22:22:39 by kmaitski          #+#    #+#             */
-/*   Updated: 2017/02/18 15:42:20 by kmaitski         ###   ########.fr       */
+/*   Created: 2017/01/20 11:55:19 by kmaitski          #+#    #+#             */
+/*   Updated: 2017/02/09 20:29:07 by kmaitski         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FILLIT_H
-# define FILLIT_H
+#include "libft.h"
 
-# include "libft/libft.h"
-# include <fcntl.h>
-# include <stdio.h>
+void	*ft_memmove(void *dest, const void *src, size_t n)
+{
+	char		*char_dest;
+	const char	*char_src;
 
-char	*open_read(char *file);
-int	validate(char *read_string);
-int	check_piece(char *str);
-int	main(int argc, char **argv);
-
-#endif
+	char_dest = dest;
+	char_src = src;
+	if (dest < src)
+		while (n--)
+			*char_dest++ = *char_src++;
+	else
+		while (n--)
+			char_dest[n] = char_src[n];
+	dest = char_dest;
+	return (dest);
+}

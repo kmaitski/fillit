@@ -1,6 +1,6 @@
 #include "fillit.h"
 
-char	*open_read(char *file, char *str)
+char	*open_read(char *file)
 {
 	int	x;
 	int	c;

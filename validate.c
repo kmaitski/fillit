@@ -14,7 +14,7 @@
 
 int quick_check(char *read_string)
 {
-	int	piece;
+	int	pieces;
 	int	lines;
 	int	blanks;
 	int	c;
@@ -25,19 +25,17 @@ int quick_check(char *read_string)
 	c = 0;
 	while (read_string[c] != '\0')
 	{
-		if (read_string[c] == ".")
+		if (read_string[c] == '.')
 			blanks++;
-		else if (read_strings[c] == "#")
+		if (read_string[c] == '#')
 			pieces++;
-		else if (read_strings[c] == '\n')
+		if (read_string[c] == '\n')
 			lines++;
-		else
-			return (0);
 		c++;
 	}
-	if (pieces % 4 || blanks % 4 || lines % 5)
+	if (pieces % 4 || blanks % 4 || ++lines % 5)
 		return (0);
-	return (pieces / 4);
+	return (lines / 5);
 }
 
 int	validate(char *read_string)
@@ -49,12 +47,18 @@ int	validate(char *read_string)
 
 	x = 0;
 	if (!(pieces = quick_check(read_string)))
+	{
 		return (0);
+	}
 	current_piece = ft_strsub(read_string, x, 21);
-	while (pieces-- && check_piece(current_piece) == 1)
+	while (check_piece(current_piece) == 1)
 	{
 		x = x + 21;
-		current_piece = ft_strsub(read_string, x, 21)
+		current_piece = ft_strsub(read_string, x, 21);
+		pieces--;
 	}
-	return (1);
+	if (pieces == 0)
+		return (1);
+	else
+		return (0);
 }
