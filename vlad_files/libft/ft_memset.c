@@ -1,29 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_memset.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vmakarov <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: kmaitski <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/02/16 16:19:18 by vmakarov          #+#    #+#             */
-/*   Updated: 2017/02/22 16:36:32 by kmaitski         ###   ########.fr       */
+/*   Created: 2017/01/20 11:55:51 by kmaitski          #+#    #+#             */
+/*   Updated: 2017/02/09 14:02:41 by kmaitski         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fillit.h"
+#include "libft.h"
 
-int	main(int argc, char **argv)
+void	*ft_memset(void *str, int c, size_t n)
 {
-	char *str;
-	char ***array;
+	char	*s;
+	int		x;
 
-	str = reader(argc, argv);
-	if (validator(str) == 1)
+	s = str;
+	x = 0;
+	while (n--)
 	{
-		ft_putstr("CYKA\n");
-		return (0);
+		s[x] = c;
+		x++;
 	}
-	array = split_3d(str);
-	ft_putchar('Y');
-	return (0);
+	return (s);
 }

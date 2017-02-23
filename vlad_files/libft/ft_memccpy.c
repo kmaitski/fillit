@@ -1,27 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fillit.h                                           :+:      :+:    :+:   */
+/*   ft_memccpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kmaitski <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/02/17 22:22:39 by kmaitski          #+#    #+#             */
-/*   Updated: 2017/02/22 18:28:48 by kmaitski         ###   ########.fr       */
+/*   Created: 2017/02/02 12:49:34 by kmaitski          #+#    #+#             */
+/*   Updated: 2017/02/02 14:54:33 by kmaitski         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FILLIT_H
-# define FILLIT_H
+#include "libft.h"
 
-# include "libft/libft.h"
-# include <fcntl.h>
-# include <stdio.h>
+void	*ft_memccpy(void *dest, const void *src, int c, size_t n)
+{
+	size_t		index;
+	char		*char_dest;
+	const char	*char_src;
 
-extern int c;
-
-char	*open_read(char *file);
-int	validate(char *read_string);
-int	check_piece(char *str);
-int	main(int argc, char **argv);
-
-#endif
+	index = 0;
+	char_dest = dest;
+	char_src = src;
+	if (dest == src)
+		return (dest);
+	while (n-- && dest && src)
+	{
+		char_dest[index] = char_src[index];
+		if (char_dest[index] == c)
+			return (&char_dest[++index]);
+		index++;
+	}
+	return (NULL);
+}

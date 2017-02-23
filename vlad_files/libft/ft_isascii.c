@@ -1,29 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_isascii.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vmakarov <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: kmaitski <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/02/16 16:19:18 by vmakarov          #+#    #+#             */
-/*   Updated: 2017/02/22 16:36:32 by kmaitski         ###   ########.fr       */
+/*   Created: 2017/02/02 13:17:23 by kmaitski          #+#    #+#             */
+/*   Updated: 2017/02/02 15:18:46 by kmaitski         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fillit.h"
+#include "libft.h"
 
-int	main(int argc, char **argv)
+int	ft_isascii(int c)
 {
-	char *str;
-	char ***array;
-
-	str = reader(argc, argv);
-	if (validator(str) == 1)
-	{
-		ft_putstr("CYKA\n");
+	if (c >= 0 && c <= 127)
+		return (1);
+	else
 		return (0);
-	}
-	array = split_3d(str);
-	ft_putchar('Y');
-	return (0);
 }

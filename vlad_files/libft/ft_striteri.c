@@ -1,29 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_striteri.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vmakarov <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: kmaitski <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/02/16 16:19:18 by vmakarov          #+#    #+#             */
-/*   Updated: 2017/02/22 16:36:32 by kmaitski         ###   ########.fr       */
+/*   Created: 2017/01/05 16:03:15 by kmaitski          #+#    #+#             */
+/*   Updated: 2017/02/02 15:30:20 by kmaitski         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fillit.h"
+#include "libft.h"
 
-int	main(int argc, char **argv)
+void	ft_striteri(char *s, void (*f)(unsigned int, char *))
 {
-	char *str;
-	char ***array;
+	unsigned int	x;
 
-	str = reader(argc, argv);
-	if (validator(str) == 1)
+	x = 0;
+	if (s != NULL && f != NULL)
 	{
-		ft_putstr("CYKA\n");
-		return (0);
+		while (*s != '\0')
+		{
+			f(x, s);
+			x++;
+			s++;
+		}
 	}
-	array = split_3d(str);
-	ft_putchar('Y');
-	return (0);
 }

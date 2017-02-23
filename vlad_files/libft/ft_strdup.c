@@ -1,29 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vmakarov <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: kmaitski <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/02/16 16:19:18 by vmakarov          #+#    #+#             */
-/*   Updated: 2017/02/22 16:36:32 by kmaitski         ###   ########.fr       */
+/*   Created: 2017/02/02 13:17:39 by kmaitski          #+#    #+#             */
+/*   Updated: 2017/02/09 14:02:15 by kmaitski         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fillit.h"
+#include "libft.h"
 
-int	main(int argc, char **argv)
+char	*ft_strdup(const char *s)
 {
-	char *str;
-	char ***array;
+	char	*n;
+	int		c;
 
-	str = reader(argc, argv);
-	if (validator(str) == 1)
+	if (!(n = ft_strnew(ft_strlen(s))))
+		return (NULL);
+	c = 0;
+	while (s[c] != '\0')
 	{
-		ft_putstr("CYKA\n");
-		return (0);
+		n[c] = s[c];
+		c++;
 	}
-	array = split_3d(str);
-	ft_putchar('Y');
-	return (0);
+	return (n);
 }

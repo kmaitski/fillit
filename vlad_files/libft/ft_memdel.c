@@ -1,29 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_memdel.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vmakarov <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: kmaitski <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/02/16 16:19:18 by vmakarov          #+#    #+#             */
-/*   Updated: 2017/02/22 16:36:32 by kmaitski         ###   ########.fr       */
+/*   Created: 2017/01/05 13:38:24 by kmaitski          #+#    #+#             */
+/*   Updated: 2017/02/02 15:21:25 by kmaitski         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fillit.h"
+#include "libft.h"
 
-int	main(int argc, char **argv)
+void	ft_memdel(void **ap)
 {
-	char *str;
-	char ***array;
-
-	str = reader(argc, argv);
-	if (validator(str) == 1)
+	if (ap != NULL)
 	{
-		ft_putstr("CYKA\n");
-		return (0);
+		free(*ap);
+		*ap = NULL;
 	}
-	array = split_3d(str);
-	ft_putchar('Y');
-	return (0);
 }

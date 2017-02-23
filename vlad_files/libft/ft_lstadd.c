@@ -1,29 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_lstadd.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vmakarov <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: kmaitski <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/02/16 16:19:18 by vmakarov          #+#    #+#             */
-/*   Updated: 2017/02/22 16:36:32 by kmaitski         ###   ########.fr       */
+/*   Created: 2017/02/02 17:45:05 by kmaitski          #+#    #+#             */
+/*   Updated: 2017/02/09 16:16:59 by kmaitski         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fillit.h"
+#include "libft.h"
 
-int	main(int argc, char **argv)
+void	ft_lstadd(t_list **alst, t_list *new)
 {
-	char *str;
-	char ***array;
+	t_list	*old_head;
 
-	str = reader(argc, argv);
-	if (validator(str) == 1)
+	if (!new)
+		return ;
+	old_head = *alst;
+	if (alst == NULL)
 	{
-		ft_putstr("CYKA\n");
-		return (0);
+		*alst = new;
+		new->next = NULL;
 	}
-	array = split_3d(str);
-	ft_putchar('Y');
-	return (0);
+	else
+	{
+		*alst = new;
+		new->next = old_head;
+	}
 }

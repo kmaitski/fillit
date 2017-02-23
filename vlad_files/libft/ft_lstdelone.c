@@ -1,29 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_lstdelone.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vmakarov <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: kmaitski <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/02/16 16:19:18 by vmakarov          #+#    #+#             */
-/*   Updated: 2017/02/22 16:36:32 by kmaitski         ###   ########.fr       */
+/*   Created: 2017/02/02 17:05:07 by kmaitski          #+#    #+#             */
+/*   Updated: 2017/02/02 18:20:14 by kmaitski         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fillit.h"
+#include "libft.h"
 
-int	main(int argc, char **argv)
+void	ft_lstdelone(t_list **alst, void (*del)(void *, size_t))
 {
-	char *str;
-	char ***array;
+	t_list	*node;
 
-	str = reader(argc, argv);
-	if (validator(str) == 1)
-	{
-		ft_putstr("CYKA\n");
-		return (0);
-	}
-	array = split_3d(str);
-	ft_putchar('Y');
-	return (0);
+	if (!alst)
+		return ;
+	node = *alst;
+	del(node->content, node->content_size);
+	free(node);
+	*alst = NULL;
 }

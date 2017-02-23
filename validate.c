@@ -6,7 +6,7 @@
 /*   By: kmaitski <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/15 12:56:08 by kmaitski          #+#    #+#             */
-/*   Updated: 2017/02/17 22:28:50 by kmaitski         ###   ########.fr       */
+/*   Updated: 2017/02/22 18:28:46 by kmaitski         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@ int quick_check(char *read_string)
 		c++;
 	}
 	if (pieces % 4 || blanks % 4 || ++lines % 5)
+		return (0);
+	if (pieces / 4 != lines / 5)
 		return (0);
 	return (lines / 5);
 }

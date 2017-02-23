@@ -6,12 +6,11 @@
 /*   By: vmakarov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/16 16:23:14 by vmakarov          #+#    #+#             */
-/*   Updated: 2017/02/21 19:52:07 by vmakarov         ###   ########.fr       */
+/*   Updated: 2017/02/22 16:36:54 by kmaitski         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
-#include "./libft/libft.h"
 
 int					size_of_3d_array(const char *s)
 {

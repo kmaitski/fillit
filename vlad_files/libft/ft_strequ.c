@@ -1,29 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strequ.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vmakarov <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: kmaitski <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/02/16 16:19:18 by vmakarov          #+#    #+#             */
-/*   Updated: 2017/02/22 16:36:32 by kmaitski         ###   ########.fr       */
+/*   Created: 2017/01/05 17:57:12 by kmaitski          #+#    #+#             */
+/*   Updated: 2017/02/09 19:15:15 by kmaitski         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fillit.h"
+#include "libft.h"
 
-int	main(int argc, char **argv)
+int	ft_strequ(char const *s1, char const *s2)
 {
-	char *str;
-	char ***array;
+	int	x;
 
-	str = reader(argc, argv);
-	if (validator(str) == 1)
-	{
-		ft_putstr("CYKA\n");
+	x = 0;
+	if (!s1 || !s2)
 		return (0);
+	while (s1[x] == s2[x])
+	{
+		if (s1[x] == '\0' && s2[x] == '\0')
+			return (1);
+		x++;
 	}
-	array = split_3d(str);
-	ft_putchar('Y');
 	return (0);
 }

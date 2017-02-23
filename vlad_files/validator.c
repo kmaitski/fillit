@@ -6,12 +6,11 @@
 /*   By: vmakarov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/16 16:17:15 by vmakarov          #+#    #+#             */
-/*   Updated: 2017/02/21 19:56:30 by vmakarov         ###   ########.fr       */
+/*   Updated: 2017/02/22 16:42:15 by kmaitski         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
-#include "./libft/libft.h"
 
 int				validator(char *str)
 {

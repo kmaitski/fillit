@@ -1,29 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_lstn.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vmakarov <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: kmaitski <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/02/16 16:19:18 by vmakarov          #+#    #+#             */
-/*   Updated: 2017/02/22 16:36:32 by kmaitski         ###   ########.fr       */
+/*   Created: 2017/02/09 17:03:24 by kmaitski          #+#    #+#             */
+/*   Updated: 2017/02/09 17:40:10 by kmaitski         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fillit.h"
+#include "libft.h"
 
-int	main(int argc, char **argv)
+t_list	*ft_lstn(t_list *begin, size_t n)
 {
-	char *str;
-	char ***array;
+	size_t	count;
+	t_list	*node;
 
-	str = reader(argc, argv);
-	if (validator(str) == 1)
+	if (!begin)
+		return (NULL);
+	count = 1;
+	node = begin;
+	while (count < n)
 	{
-		ft_putstr("CYKA\n");
-		return (0);
+		node = node->next;
+		count++;
 	}
-	array = split_3d(str);
-	ft_putchar('Y');
-	return (0);
+	return (node);
 }

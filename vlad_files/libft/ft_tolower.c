@@ -1,29 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_tolower.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vmakarov <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: kmaitski <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/02/16 16:19:18 by vmakarov          #+#    #+#             */
-/*   Updated: 2017/02/22 16:36:32 by kmaitski         ###   ########.fr       */
+/*   Created: 2017/02/02 13:35:18 by kmaitski          #+#    #+#             */
+/*   Updated: 2017/02/03 11:48:40 by kmaitski         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fillit.h"
+#include "libft.h"
 
-int	main(int argc, char **argv)
+int	ft_tolower(int c)
 {
-	char *str;
-	char ***array;
-
-	str = reader(argc, argv);
-	if (validator(str) == 1)
-	{
-		ft_putstr("CYKA\n");
-		return (0);
-	}
-	array = split_3d(str);
-	ft_putchar('Y');
-	return (0);
+	if (c >= 'A' && c <= 'Z')
+		c = c + 32;
+	return (c);
 }

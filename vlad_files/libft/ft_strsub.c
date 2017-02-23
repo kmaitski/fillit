@@ -1,27 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fillit.h                                           :+:      :+:    :+:   */
+/*   ft_strsub.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kmaitski <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/02/17 22:22:39 by kmaitski          #+#    #+#             */
-/*   Updated: 2017/02/22 18:28:48 by kmaitski         ###   ########.fr       */
+/*   Created: 2017/01/05 18:27:54 by kmaitski          #+#    #+#             */
+/*   Updated: 2017/02/10 11:49:01 by kmaitski         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FILLIT_H
-# define FILLIT_H
+#include "libft.h"
 
-# include "libft/libft.h"
-# include <fcntl.h>
-# include <stdio.h>
+char	*ft_strsub(char const *s, unsigned int start, size_t len)
+{
+	char	*new;
+	size_t	x;
 
-extern int c;
-
-char	*open_read(char *file);
-int	validate(char *read_string);
-int	check_piece(char *str);
-int	main(int argc, char **argv);
-
-#endif
+	if (!s)
+		return (NULL);
+	new = (char *)malloc(len + 1);
+	if (new == NULL)
+		return (0);
+	x = 0;
+	while (x < len)
+	{
+		new[x] = s[start];
+		x++;
+		start++;
+	}
+	new[x] = '\0';
+	return (new);
+}

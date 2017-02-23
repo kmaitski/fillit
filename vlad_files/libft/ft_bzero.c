@@ -1,29 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_bzero.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vmakarov <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: kmaitski <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/02/16 16:19:18 by vmakarov          #+#    #+#             */
-/*   Updated: 2017/02/22 16:36:32 by kmaitski         ###   ########.fr       */
+/*   Created: 2017/01/20 11:52:28 by kmaitski          #+#    #+#             */
+/*   Updated: 2017/02/02 14:52:35 by kmaitski         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fillit.h"
+#include "libft.h"
 
-int	main(int argc, char **argv)
+void	ft_bzero(void *s, size_t n)
 {
-	char *str;
-	char ***array;
+	char	*str;
 
-	str = reader(argc, argv);
-	if (validator(str) == 1)
-	{
-		ft_putstr("CYKA\n");
-		return (0);
-	}
-	array = split_3d(str);
-	ft_putchar('Y');
-	return (0);
+	str = s;
+	while (n--)
+		*str++ = 0;
 }

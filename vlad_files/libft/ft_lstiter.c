@@ -1,29 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_lstiter.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vmakarov <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: kmaitski <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/02/16 16:19:18 by vmakarov          #+#    #+#             */
-/*   Updated: 2017/02/22 16:36:32 by kmaitski         ###   ########.fr       */
+/*   Created: 2017/02/02 17:54:03 by kmaitski          #+#    #+#             */
+/*   Updated: 2017/02/09 17:00:56 by kmaitski         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fillit.h"
+#include "libft.h"
 
-int	main(int argc, char **argv)
+void	ft_lstiter(t_list *lst, void (*f)(t_list *elm))
 {
-	char *str;
-	char ***array;
+	t_list	*list;
 
-	str = reader(argc, argv);
-	if (validator(str) == 1)
+	list = lst;
+	while (list)
 	{
-		ft_putstr("CYKA\n");
-		return (0);
+		f(list);
+		list = list->next;
 	}
-	array = split_3d(str);
-	ft_putchar('Y');
-	return (0);
 }

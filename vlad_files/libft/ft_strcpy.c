@@ -1,29 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vmakarov <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: kmaitski <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/02/16 16:19:18 by vmakarov          #+#    #+#             */
-/*   Updated: 2017/02/22 16:36:32 by kmaitski         ###   ########.fr       */
+/*   Created: 2017/02/02 13:16:37 by kmaitski          #+#    #+#             */
+/*   Updated: 2017/02/02 15:03:54 by kmaitski         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fillit.h"
+#include "libft.h"
 
-int	main(int argc, char **argv)
+char	*ft_strcpy(char *dest, const char *src)
 {
-	char *str;
-	char ***array;
+	int	c;
 
-	str = reader(argc, argv);
-	if (validator(str) == 1)
+	c = 0;
+	while (src[c] != '\0')
 	{
-		ft_putstr("CYKA\n");
-		return (0);
+		dest[c] = src[c];
+		c++;
 	}
-	array = split_3d(str);
-	ft_putchar('Y');
-	return (0);
+	dest[c] = '\0';
+	return (dest);
 }

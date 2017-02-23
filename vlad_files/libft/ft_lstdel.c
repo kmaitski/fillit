@@ -1,29 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_lstdel.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vmakarov <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: kmaitski <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/02/16 16:19:18 by vmakarov          #+#    #+#             */
-/*   Updated: 2017/02/22 16:36:32 by kmaitski         ###   ########.fr       */
+/*   Created: 2017/02/02 17:35:30 by kmaitski          #+#    #+#             */
+/*   Updated: 2017/02/02 17:44:49 by kmaitski         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fillit.h"
+#include "libft.h"
 
-int	main(int argc, char **argv)
+void	ft_lstdel(t_list **alst, void (*del)(void *, size_t))
 {
-	char *str;
-	char ***array;
+	t_list	*node;
+	t_list	*next;
 
-	str = reader(argc, argv);
-	if (validator(str) == 1)
+	node = *alst;
+	while (node)
 	{
-		ft_putstr("CYKA\n");
-		return (0);
+		next = node->next;
+		del(node->content, node->content_size);
+		free(node);
+		node = next;
 	}
-	array = split_3d(str);
-	ft_putchar('Y');
-	return (0);
+	*alst = NULL;
 }

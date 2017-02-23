@@ -11,7 +11,10 @@ char	*open_read(char *file)
 	c = 0;
 	fd = open(file, O_RDONLY);
 	if (fd < 0)
+	{
+		ft_putstr("error\n");
 		return (NULL);
+	}
 	while ((x = read(fd, buf, 1)))
 	{
 		tmp[c] = buf[0];

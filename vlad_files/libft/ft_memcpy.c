@@ -1,29 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_memcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vmakarov <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: kmaitski <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/02/16 16:19:18 by vmakarov          #+#    #+#             */
-/*   Updated: 2017/02/22 16:36:32 by kmaitski         ###   ########.fr       */
+/*   Created: 2017/01/20 11:52:56 by kmaitski          #+#    #+#             */
+/*   Updated: 2017/02/02 19:57:20 by kmaitski         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fillit.h"
+#include "libft.h"
 
-int	main(int argc, char **argv)
+void	*ft_memcpy(void *str1, const void *str2, size_t n)
 {
-	char *str;
-	char ***array;
+	char		*char_str1;
+	const char	*char_str2;
 
-	str = reader(argc, argv);
-	if (validator(str) == 1)
-	{
-		ft_putstr("CYKA\n");
-		return (0);
-	}
-	array = split_3d(str);
-	ft_putchar('Y');
-	return (0);
+	char_str1 = str1;
+	char_str2 = str2;
+	while (n--)
+		*char_str1++ = *char_str2++;
+	str1 = char_str1;
+	return (str1);
 }

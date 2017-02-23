@@ -1,29 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_memchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vmakarov <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: kmaitski <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/02/16 16:19:18 by vmakarov          #+#    #+#             */
-/*   Updated: 2017/02/22 16:36:32 by kmaitski         ###   ########.fr       */
+/*   Created: 2017/01/20 11:53:22 by kmaitski          #+#    #+#             */
+/*   Updated: 2017/02/10 11:57:42 by kmaitski         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fillit.h"
+#include "libft.h"
 
-int	main(int argc, char **argv)
+void	*ft_memchr(const void *str, int c, size_t n)
 {
-	char *str;
-	char ***array;
+	const char	*char_str;
 
-	str = reader(argc, argv);
-	if (validator(str) == 1)
+	if (!str)
+		return (NULL);
+	char_str = str;
+	while (n--)
 	{
-		ft_putstr("CYKA\n");
-		return (0);
+		if (*char_str == (signed char)c)
+		{
+			return ((void*)char_str);
+		}
+		char_str++;
 	}
-	array = split_3d(str);
-	ft_putchar('Y');
-	return (0);
+	return (NULL);
 }

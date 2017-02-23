@@ -6,7 +6,7 @@
 /*   By: vmakarov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/14 16:24:24 by vmakarov          #+#    #+#             */
-/*   Updated: 2017/02/21 20:05:19 by vmakarov         ###   ########.fr       */
+/*   Updated: 2017/02/22 16:40:08 by kmaitski         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <sys/types.h>
 # include <sys/uio.h>
 # include <sys/stat.h> // exit is in stdlib which is libft.h
+# include "libft/libft.a"
 # define BUF_SIZE 13 // malloc, free, write are also included by the libft.h
 
 typedef struct	s_validator

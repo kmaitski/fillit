@@ -1,29 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_lstsize.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vmakarov <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: kmaitski <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/02/16 16:19:18 by vmakarov          #+#    #+#             */
-/*   Updated: 2017/02/22 16:36:32 by kmaitski         ###   ########.fr       */
+/*   Created: 2017/02/09 16:04:30 by kmaitski          #+#    #+#             */
+/*   Updated: 2017/02/09 17:02:17 by kmaitski         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fillit.h"
+#include "libft.h"
 
-int	main(int argc, char **argv)
+size_t	ft_lstsize(t_list *begin)
 {
-	char *str;
-	char ***array;
+	size_t	count;
+	t_list	*list;
 
-	str = reader(argc, argv);
-	if (validator(str) == 1)
+	count = 0;
+	list = begin;
+	while (list)
 	{
-		ft_putstr("CYKA\n");
-		return (0);
+		count++;
+		list = list->next;
 	}
-	array = split_3d(str);
-	ft_putchar('Y');
-	return (0);
+	return (count);
 }
