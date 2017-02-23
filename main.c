@@ -6,7 +6,7 @@
 /*   By: kmaitski <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/22 20:16:22 by kmaitski          #+#    #+#             */
-/*   Updated: 2017/02/22 20:59:54 by kmaitski         ###   ########.fr       */
+/*   Updated: 2017/02/23 12:19:47 by kmaitski         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,10 @@ int	main(int argc, char **argv)
 	read_string = open_read(argv[1]);
 	if (validate(read_string) != 1)
 	{
-		ft_pustr("error\n")
+		ft_putstr("error\n");
 		return (0);
 	}
 	array = split_3d(read_string);
-	return (0);
+	print_3d_array(array);
+	return (1);
 }
