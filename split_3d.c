@@ -6,7 +6,7 @@
 /*   By: vmakarov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/16 16:23:14 by vmakarov          #+#    #+#             */
-/*   Updated: 2017/02/22 20:59:59 by kmaitski         ###   ########.fr       */
+/*   Updated: 2017/02/22 20:59:48 by kmaitski         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,20 @@
 
 int					size_of_3d_array(const char *s)
 {
-	int i;
-	int size;
+	int c;
+	int pieces;
 
-	size = 0;
-	i = 0;
+	pieces = 0;
+	c = 0;
 	if (s == NULL)
 		return (0);
-	while (s[i] != '\0')
+	while (s[c] != '\0')
 	{
-		if ((s[i] == '\n') && ((s[i + 1] == '\n') || (s[i + 1] == '\0')))
-			size++;
-		i++;
+		if (s[c] == '\n' && (s[c + 1] == '\n' || s[c + 1] == '\0'))
+			pieces++;
+		c++;
 	}
-	return (size);
+	return (pieces);
 }
 
 static	char		**give_element_of_3d_array(char *str,
@@ -58,12 +58,12 @@ char				***split_3d(char *str)
 {
 	char	***result;
 	int		position_3d;
-	int		size_3d;
+	int		pieces;
 
 	if (str == NULL)
 		return (NULL);
-	size_3d = size_of_3d_array(str);
-	if (!(result = (char ***)malloc(sizeof(char **) * (size_3d + 1))))
+	pieces = size_of_3d_array(str);
+	if (!(result = (char ***)malloc(sizeof(char **) * (pieces + 1))))
 		return (NULL);
 	position_3d = 0;
 	while (size_3d > 0)

@@ -6,11 +6,12 @@
 /*   By: vmakarov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/16 16:19:18 by vmakarov          #+#    #+#             */
-/*   Updated: 2017/02/22 16:36:32 by kmaitski         ###   ########.fr       */
+/*   Updated: 2017/02/22 20:59:57 by kmaitski         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
+#include "./libft/libft.h"
 
 int	main(int argc, char **argv)
 {
@@ -24,6 +25,12 @@ int	main(int argc, char **argv)
 		return (0);
 	}
 	array = split_3d(str);
+	print_3d_array(array);
+	if (validator_2(array) == 1)
+	{
+		ft_putstr("BLYA\n");
+		return (0);
+	}
 	ft_putchar('Y');
 	return (0);
 }

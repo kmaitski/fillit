@@ -6,13 +6,13 @@
 /*   By: kmaitski <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/15 12:56:08 by kmaitski          #+#    #+#             */
-/*   Updated: 2017/02/22 18:28:46 by kmaitski         ###   ########.fr       */
+/*   Updated: 2017/02/22 20:23:49 by kmaitski         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-int quick_check(char *read_string)
+int	quick_check(char *read_string)
 {
 	int	pieces;
 	int	lines;
