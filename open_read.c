@@ -15,26 +15,22 @@
 char	*open_read(char *file)
 {
 	int		x;
-	int		c;
 	int		fd;
 	char	buf[1];
-	char	tmp[500];
+	char	tmp[545];
+	int	c;
 
 	c = 0;
-	fd = open(file, O_RDONLY);
-	if (fd < 0)
+	if ((fd = open(file, O_RDONLY)) < 0)
+		error();
+	while ((x = read(fd, buf, 1)) > 0)
 	{
-		ft_putstr("error\n");
-		return (NULL);
-	}
-	while ((x = read(fd, buf, 1)))
 		tmp[c++] = buf[0];
+		if (c > 545)
+			error();
+	}
 	tmp[c] = '\0';
 	if (close(fd) < 0)
-	{
-		ft_putstr("error\n");
-		return (NULL);
-	}
-	close(fd);
+		error();
 	return (ft_strdup(tmp));
 }

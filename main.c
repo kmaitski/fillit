@@ -18,17 +18,10 @@ int	main(int argc, char **argv)
 	char	***array;
 
 	if (argc != 2)
-	{
-		ft_putstr("usage: fillit input_file\n");
-		return (0);
-	}
+		error();
 	read_string = open_read(argv[1]);
-	if (validate(read_string) != 1)
-	{
-		ft_putstr("error\n");
-		return (0);
-	}
+	validate(read_string);
 	array = split_3d(read_string);
 	print_3d_array(array);
-	return (1);
+	return (0);
 }

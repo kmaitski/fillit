@@ -82,10 +82,10 @@ char				***split_3d(char *str)
 	pieces = size_of_3d_array(str);
 	if (!(result = (char ***)malloc(sizeof(char **) * (pieces + 1))))
 		return (NULL);
-	position_3d = 0;
+	pos_3d = 0;
 	while (pieces > 0)
 	{
-		result[pos_3d] = give_element_of_3d_array(str, position_3d * 21, c);
+		result[pos_3d] = give_element_of_3d_array(str, pos_3d * 21, c);
 		pieces--;
 		pos_3d++;
 		c++;
