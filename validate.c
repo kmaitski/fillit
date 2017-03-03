@@ -6,7 +6,7 @@
 /*   By: kmaitski <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/15 12:56:08 by kmaitski          #+#    #+#             */
-/*   Updated: 2017/02/23 12:32:30 by kmaitski         ###   ########.fr       */
+/*   Updated: 2017/03/02 14:55:06 by kmaitski         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,23 +48,26 @@ t_list	*validate(char *read_string)
 	t_list	*head_node;
 	t_list	*tmp;
 	char	**coordinates_string;
+	char	c;
 
 	x = 0;
+	c = 'A';
 	if (!(pieces = quick_check(read_string)))
 		error();
 	current_piece = ft_strsub(read_string, x, 21);
 	coordinates_string = ft_strsplit(current_piece, '\n');
-	head_node = create_linked_list(coordinates_string);
+	head_node = create_linked_list(coordinates_string, c);
 	tmp = head_node;
 	while (check_piece(current_piece) == 1)
 	{
+		c++;
 		x = x + 21;
 		current_piece = ft_strsub(read_string, x, 21);
 		coordinates_string = ft_strsplit(current_piece, '\n');
 		if (x < ft_strlen(read_string))
 		{
 			tmp = tmp->next;
-			tmp = create_linked_list(coordinates_string);
+			tmp = create_linked_list(coordinates_string, c);
 		}
 		pieces--;
 	}

@@ -1,36 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   open_read.c                                        :+:      :+:    :+:   */
+/*   board_size.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kmaitski <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/02/22 20:17:14 by kmaitski          #+#    #+#             */
-/*   Updated: 2017/03/02 13:58:59 by kmaitski         ###   ########.fr       */
+/*   Created: 2017/03/02 15:22:56 by kmaitski          #+#    #+#             */
+/*   Updated: 2017/03/02 16:09:54 by kmaitski         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-char	*open_read(char *file)
+int	get_board_size(int pieces)
 {
-	int		x;
-	int		fd;
-	char	buf[1];
-	char	tmp[545];
-	int	c;
-
-	c = 0;
-	if ((fd = open(file, O_RDONLY)) < 0)
-		error();
-	while ((x = read(fd, buf, 1)) > 0)
-	{
-		tmp[c++] = buf[0];
-		if (c > 545)
-			error();
-	}
-	tmp[c] = '\0';
-	if (close(fd) < 0)
-		error();
-	return (ft_strdup(tmp));
+	int	board_size;
+	
+	board_size = 2;
+	while (board_size * board_size < pieces * 4)
+		board_size++;
+	return (board_size);
 }

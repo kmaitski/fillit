@@ -6,35 +6,30 @@
 /*   By: vmakarov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/18 23:24:21 by vmakarov          #+#    #+#             */
-/*   Updated: 2017/02/23 12:20:48 by kmaitski         ###   ########.fr       */
+/*   Updated: 2017/03/02 16:09:49 by kmaitski         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./libft/libft.h"
 #include "fillit.h"
 
-void	print_3d_array(char ***array)
+void	print_3d_array(char **array)
 {
-	int i;
 	int j;
 	int k;
 
-	i = 0;
-	while (array[i] != '\0')
+	j = 0;
+	while (array[j] != '\0')
 	{
-		j = 0;
-		while (array[i][j] != '\0')
+		k = 0;
+		while (array[j][k] != '\0')
 		{
-			k = 0;
-			while (array[i][j][k] != '\0')
-			{
-				ft_putchar(array[i][j][k]);
-				k++;
-			}
-			j++;
+			ft_putchar(array[j][k]);
+			k++;
 		}
-		i++;
-		if (i != 0 && array[i] != '\0')
-			ft_putchar('\n');
+		ft_putchar('\n');
+		j++;
 	}
+	if (j != 0 && array[j] != '\0')
+			ft_putchar('\n');
 }
