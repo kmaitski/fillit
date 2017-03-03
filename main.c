@@ -23,12 +23,14 @@ int	main(int argc, char **argv)
 	if (argc != 2)
 		error();
 	read_string = open_read(argv[1]);
-	head_node = validate(read_string);
+	if (validate(read_string))
+		error();
 	pieces = quick_check(read_string);
+	head_node = create_linked_list(read_string, pieces);
+	printf("%d", head_node->x_cor[2]);
 	board_size = get_board_size(pieces);
-	printf("%d", board_size);
 	array = map_creator(board_size);
-	array = solve_it(array, board_size, head_node, pieces);
+	array = solve_it(array, board_size, head_node);
 	print_3d_array(array);
 	return (0);
 }

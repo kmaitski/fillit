@@ -79,7 +79,10 @@ char	**place_piece(char **board, t_list *node, int board_size)
 		while (x < board_size)
 		{
 			if (node->x_cor[i] == x && node->y_cor[i] == y)
+			{
 				board[y][x] = node->c;
+				i++;
+			}
 			x++;
 		}
 		y++;
@@ -89,26 +92,31 @@ char	**place_piece(char **board, t_list *node, int board_size)
 
 
 
-char	**solve_it(char **board, int board_size, t_list *node, int pieces)
+char	**solve_it(char **board, int board_size, t_list *node)
 {
 	int	x;
 	int	y;
+	int	i;
+	char	**result;
 
 	y = 0;
+	result = NULL;
 	while (y < board_size)
 	{
 		x = 0;
 		while (x < board_size)
 		{
-			move_piece(node, x, y);
-			//printf(
-			if(!check_place_piece(node, board, board_size))
-				place_piece(board, node, board_size);
-			//while(--pieces)
-				//solve_it(board, board_size, node->next, pieces);
+			node = move_piece(node, x, y);
+			if (!check_place_piece(node, board, board_size))
+				result = solve_it(place_piece(board, node, board_size), board_size, node->next);
+			if (result)	
+				return (result);
 			x++;
 		}
 		y++;
 	}
+//	board_size++;
+//	if (y < 500)
+//		solve_it(map_creator(board_size), board_size, node);
 	return (board);
 }

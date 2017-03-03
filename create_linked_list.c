@@ -12,33 +12,52 @@
 
 #include "fillit.h"
 
-t_list	*create_linked_list(char **str, char c)
+t_list	*fill_arrays(t_list *node, char c, char **coordinates_string)
 {
 	int	x;
 	int	y;
 	int	i;
-	t_list	*new_node;
 
 	y = 0;
 	i = 0;
-	if (!(new_node = (t_list *)malloc(sizeof(t_list))))
-		return (NULL);
-	while (y < 4)
+	while (coordinates_string[y] != '\0')
 	{
 		x = 0;
-		while (x < 4)
+		while (coordinates_string[y][x] != '\0')
 		{
-			if (str[y][x] == '#')
+			if (coordinates_string[y][x] == '#')
 			{
-				new_node->x_cor[i] = x;
-				new_node->y_cor[i] = y;
+				node->x_cor[i] = x;
+				node->y_cor[i] = y;
 				i++;
 			}
 			x++;
 		}
 		y++;
 	}
-	if (!(new_node->next = (t_list *)malloc(sizeof(t_list))))
+	node->c = c;
+	return (node);
+}
+
+t_list	*create_linked_list(char *read_string, int pieces)
+{
+	int	x;
+	char	c;
+	t_list	*head_node;
+	t_list	*tmp;
+
+	c = 'A';
+	if (!(head_node = (t_list *)malloc(sizeof(t_list))))
 		return (NULL);
-	return (new_node);
+	tmp = head_node;
+	while (pieces--)
+	{
+		fill_arrays(tmp, c, ft_strsplit(ft_strsub(read_string, x, 20), '\n'));
+		x = x + 21;
+		if (!(tmp->next = (t_list *)(malloc(sizeof(t_list)))))
+			return (NULL);
+		tmp = tmp->next;
+		c++;
+	}
+	return (head_node);
 }

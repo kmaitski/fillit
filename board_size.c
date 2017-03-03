@@ -19,5 +19,5 @@ int	get_board_size(int pieces)
 	board_size = 2;
 	while (board_size * board_size < pieces * 4)
 		board_size++;
-	return (board_size);
+	return (5);
 }

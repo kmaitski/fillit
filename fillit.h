@@ -28,7 +28,7 @@ typedef struct		s_list
 }			t_list;
 
 char	*open_read(char *file);
-t_list		*validate(char *read_string);
+int		validate(char *read_string);
 int		check_piece(char *str);
 int		check_piece2(char *str);
 int		check_piece3(char *str);
@@ -38,10 +38,10 @@ int		quick_check(char *read_string);
 char	***split_3d(char *str);
 void	print_3d_array(char **array);
 void	error(void);
-t_list	*create_linked_list(char **str, char c);
+t_list	*create_linked_list(char *str, int pieces);
 int		get_board_size(int pieces);
 char	**map_creator(int square_size);
-char	**solve_it(char **board, int board_size, t_list *node, int pieces);
+char	**solve_it(char **board, int board_size, t_list *node);
 
 
 #endif

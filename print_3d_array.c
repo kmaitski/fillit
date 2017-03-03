@@ -10,7 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./libft/libft.h"
 #include "fillit.h"
 
 void	print_3d_array(char **array)
@@ -30,6 +29,4 @@ void	print_3d_array(char **array)
 		ft_putchar('\n');
 		j++;
 	}
-	if (j != 0 && array[j] != '\0')
-			ft_putchar('\n');
 }

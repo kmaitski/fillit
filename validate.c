@@ -40,38 +40,20 @@ int	quick_check(char *read_string)
 	return (lines / 5);
 }
 
-t_list	*validate(char *read_string)
+int	validate(char *read_string)
 {
 	int		pieces;
 	int		x;
-	char	*current_piece;
-	t_list	*head_node;
-	t_list	*tmp;
-	char	**coordinates_string;
-	char	c;
 
 	x = 0;
-	c = 'A';
 	if (!(pieces = quick_check(read_string)))
 		error();
-	current_piece = ft_strsub(read_string, x, 21);
-	coordinates_string = ft_strsplit(current_piece, '\n');
-	head_node = create_linked_list(coordinates_string, c);
-	tmp = head_node;
-	while (check_piece(current_piece) == 1)
+	while (check_piece(ft_strsub(read_string, x, 21)))
 	{
-		c++;
 		x = x + 21;
-		current_piece = ft_strsub(read_string, x, 21);
-		coordinates_string = ft_strsplit(current_piece, '\n');
-		if (x < ft_strlen(read_string))
-		{
-			tmp = tmp->next;
-			tmp = create_linked_list(coordinates_string, c);
-		}
 		pieces--;
 	}
 	if (pieces == 0)
-		return (head_node);
-	return (NULL);
+		return (0);
+	return (1);
 }
