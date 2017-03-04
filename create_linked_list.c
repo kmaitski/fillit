@@ -6,7 +6,7 @@
 /*   By: kmaitski <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/02 13:13:09 by kmaitski          #+#    #+#             */
-/*   Updated: 2017/03/02 15:01:07 by kmaitski         ###   ########.fr       */
+/*   Updated: 2017/03/03 13:31:55 by kmaitski         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,10 @@ t_list	*fill_arrays(t_list *node, char c, char **coordinates_string)
 
 	y = 0;
 	i = 0;
-	while (coordinates_string[y] != '\0')
+	while (y != 4)
 	{
 		x = 0;
-		while (coordinates_string[y][x] != '\0')
+		while (x != 4)
 		{
 			if (coordinates_string[y][x] == '#')
 			{
@@ -46,6 +46,7 @@ t_list	*create_linked_list(char *read_string, int pieces)
 	t_list	*head_node;
 	t_list	*tmp;
 
+	x = 0;
 	c = 'A';
 	if (!(head_node = (t_list *)malloc(sizeof(t_list))))
 		return (NULL);

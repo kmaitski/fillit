@@ -6,11 +6,20 @@
 /*   By: kmaitski <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/02 13:12:48 by kmaitski          #+#    #+#             */
-/*   Updated: 2017/03/02 16:07:46 by kmaitski         ###   ########.fr       */
+/*   Updated: 2017/03/03 17:35:16 by kmaitski         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
+
+char	**bigger_board(char **old_board, int board_size)
+{
+	char	**new_board;
+
+//	ft_memdel((void**)old_board);
+	new_board = map_creator(board_size);
+	return (new_board);
+}
 
 t_list	*move_piece(t_list *node, int x, int y)
 {
@@ -92,15 +101,20 @@ char	**place_piece(char **board, t_list *node, int board_size)
 
 
 
-char	**solve_it(char **board, int board_size, t_list *node)
+char	**solve_it(char **board, int board_size, t_list *node, int pieces)
 {
 	int	x;
 	int	y;
 	int	i;
 	char	**result;
+	char	**tmp;
+	int		store_pieces;
+	t_list	*store_head;
 
 	y = 0;
-	result = NULL;
+	store_head = node;
+	store_pieces = pieces;
+//	printf("%s", board[0]);
 	while (y < board_size)
 	{
 		x = 0;
@@ -108,15 +122,29 @@ char	**solve_it(char **board, int board_size, t_list *node)
 		{
 			node = move_piece(node, x, y);
 			if (!check_place_piece(node, board, board_size))
-				result = solve_it(place_piece(board, node, board_size), board_size, node->next);
-			if (result)	
-				return (result);
+			{
+				tmp = place_piece(board, node, board_size);
+				pieces--;
+			}
 			x++;
 		}
 		y++;
 	}
-//	board_size++;
-//	if (y < 500)
-//		solve_it(map_creator(board_size), board_size, node);
+//	printf("%d", pieces);
+	if (pieces == 0)
+		return (tmp);
+	else if (node->next)
+	{
+		solve_it(board, board_size, node->next, pieces);
+//		board = bigger_board(board, board_size);
+//		solve_it(board, board_size, node, store_pieces);
+	}
+	else
+	{
+		board_size++;
+		board = map_creator(board_size);
+		solve_it(board, board_size, store_head, store_pieces);
+	}
+//	printf("%s", board[0]);
 	return (board);
 }

@@ -6,7 +6,7 @@
 /*   By: kmaitski <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/17 22:22:39 by kmaitski          #+#    #+#             */
-/*   Updated: 2017/03/02 15:57:07 by kmaitski         ###   ########.fr       */
+/*   Updated: 2017/03/03 17:35:20 by kmaitski         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@
 
 typedef struct		s_list
 {
-	int		x_cor[4];
-	int		y_cor[4];
+	int		x_cor[5];
+	int		y_cor[5];
 	char	c;
 	struct s_list	*next;
 }			t_list;
@@ -41,7 +41,7 @@ void	error(void);
 t_list	*create_linked_list(char *str, int pieces);
 int		get_board_size(int pieces);
 char	**map_creator(int square_size);
-char	**solve_it(char **board, int board_size, t_list *node);
+char	**solve_it(char **board, int board_size, t_list *node, int pieces);
 
 
 #endif
