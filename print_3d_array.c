@@ -17,6 +17,8 @@ void	print_3d_array(char **array)
 	int j;
 	int k;
 
+	if (array == NULL)
+		error();
 	j = 0;
 	while (array[j] != '\0')
 	{
