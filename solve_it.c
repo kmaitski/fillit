@@ -6,7 +6,7 @@
 /*   By: kmaitski <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/02 13:12:48 by kmaitski          #+#    #+#             */
-/*   Updated: 2017/03/03 17:35:16 by kmaitski         ###   ########.fr       */
+/*   Updated: 2017/03/06 15:20:48 by kmaitski         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,13 +90,30 @@ char	**place_piece(char **board, t_list *node, int board_size)
 	return (board);
 }
 
-
-
-void	solve_it(char **board, int board_size, t_list *node, int pieces, t_list *store_head, int store_pieces)
+char	**remove_piece(char **board, int board_size, t_list *node)
 {
 	int	x;
 	int	y;
-	int	i;
+
+	y = 0;
+	while (y < board_size)
+	{
+		x = 0;
+		while (x < board_size)
+		{
+			if (board[y][x] == node->c)
+				board[y][x] = '.';
+			x++;
+		}
+		y++;
+	}
+	return (board);
+}
+
+int	solve_it(char **board, int board_size, t_list *node, int pieces)
+{
+	int	x;
+	int	y;
 	char	**result;
 	char	**tmp;
 
@@ -118,12 +135,14 @@ void	solve_it(char **board, int board_size, t_list *node, int pieces, t_list *st
 					exit(0);
 				}
 				if (node->next)
-					solve_it(tmp, board_size, node->next, pieces, store_head, store_pieces);
+					solve_it(tmp, board_size, node->next, pieces);
+//				printf("%s", tmp[0]);
+				tmp = remove_piece(tmp, board_size, node);
+				solve_it(tmp, board_size, node->next, pieces);
 			}
 			x++;
 		}
 		y++;
 	}
-	board_size++;
-	solve_it(map_creator(board_size), board_size, store_head, store_pieces, store_head, store_pieces);
+	return (0);
 }
