@@ -32,12 +32,5 @@ int	main(int argc, char **argv)
 	board_size = get_board_size(pieces);
 	array = map_creator(board_size);
 	solve_it(array, board_size, head_node, pieces, head_node, pieces);
-//	while(!result)
-//	{
-//		board_size++;
-//		array = map_creator(board_size);
-//		result = solve_it(array, board_size, head_node, pieces);
-//	}
-//	print_3d_array(result);
 	return (0);
 }

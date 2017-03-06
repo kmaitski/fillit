@@ -57,6 +57,7 @@ t_list	*create_linked_list(char *read_string, int pieces)
 		x = x + 21;
 		if (!(tmp->next = (t_list *)(malloc(sizeof(t_list)))))
 			return (NULL);
+		tmp->c = c;
 		tmp = tmp->next;
 		c++;
 	}

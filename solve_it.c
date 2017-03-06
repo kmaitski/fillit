@@ -12,35 +12,6 @@
 
 #include "fillit.h"
 
-char	**reset_board(char **wrong_board, t_list *node, int board_size)
-{
-	int	x;
-	int	y;
-
-	y = 0;
-	while (y < board_size)
-	{
-		x = 0;
-		while (x < board_size)
-		{
-			if (node->c == wrong_board[y][x])
-				wrong_board[y][x] = '.';
-			x++;
-		}
-		y++;
-	}
-	return (wrong_board);
-}
-
-char	**bigger_board(char **old_board, int board_size)
-{
-	char	**new_board;
-
-//	ft_memdel((void**)old_board);
-	new_board = map_creator(board_size);
-	return (new_board);
-}
-
 t_list	*move_piece(t_list *node, int x, int y)
 {
 	int	x_min;
@@ -131,7 +102,6 @@ void	solve_it(char **board, int board_size, t_list *node, int pieces, t_list *st
 
 	y = 0;
 	result = NULL;
-//	printf("%s", board[0]);
 	while (y < board_size)
 	{
 		x = 0;
@@ -140,7 +110,6 @@ void	solve_it(char **board, int board_size, t_list *node, int pieces, t_list *st
 			node = move_piece(node, x, y);
 			if (!check_place_piece(node, board, board_size))
 			{
-//				printf("%d", pieces);
 				tmp = place_piece(board, node, board_size);
 				pieces--;
 				if (pieces == 0)
@@ -149,53 +118,13 @@ void	solve_it(char **board, int board_size, t_list *node, int pieces, t_list *st
 					exit(0);
 				}
 				if (node->next)
-//				{
 					solve_it(tmp, board_size, node->next, pieces, store_head, store_pieces);
-//					if (pieces == 0)
-//						return (result);
-//				}
-//				else
-//				{
-//					reset_board(tmp, node, board_size);
-//					board_size++;
-//					board = map_creator(board_size);
-//					solve_it(board, board_size, store_head, store_pieces);
-//					printf("%d", 1);
-//				}
-//
-//
 			}
 			x++;
 		}
 		y++;
 	}
-//	printf("%c", node->c);
-//	if (node->next == NULL)
-//	{
-//	reset_board(tmp, node, board_size);
-		board_size++;
-//		printf("%d", board_size);
-		board = map_creator(board_size);
-//		printf("%s", board[1]);
-//		printf("%d", store_pieces);
-		solve_it(board, board_size, store_head, store_pieces, store_head, store_pieces);
-//					printf("%d", 1);
-//	}
-//	printf("%d", pieces);
-//	if (pieces == 0)
-//		return (tmp);
-//	else if (node->next)
-//	{
-//		solve_it(board, board_size, node->next, pieces);
-//		board = bigger_board(board, board_size);
-//		solve_it(board, board_size, node, store_pieces);
-//	}
-//	else
-//	{
-//		board_size++;
-//		board = map_creator(board_size);
-//		solve_it(board, board_size, store_head, store_pieces);
-//	}
-//	printf("%d", 1);
-//	return (NULL);
+	board_size++;
+	board = map_creator(board_size);
+	solve_it(board, board_size, store_head, store_pieces, store_head, store_pieces);
 }
