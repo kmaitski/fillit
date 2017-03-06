@@ -12,7 +12,7 @@
 
 #include "fillit.h"
 
-t_list	*fill_arrays(t_list *node, char c, char **coordinates_string)
+t_list	*fill_arrays(t_list *node,  char **coordinates_string)
 {
 	int	x;
 	int	y;
@@ -35,7 +35,6 @@ t_list	*fill_arrays(t_list *node, char c, char **coordinates_string)
 		}
 		y++;
 	}
-	node->c = c;
 	return (node);
 }
 
@@ -53,7 +52,7 @@ t_list	*create_linked_list(char *read_string, int pieces)
 	tmp = head_node;
 	while (pieces--)
 	{
-		fill_arrays(tmp, c, ft_strsplit(ft_strsub(read_string, x, 20), '\n'));
+		fill_arrays(tmp, ft_strsplit(ft_strsub(read_string, x, 20), '\n'));
 		x = x + 21;
 		if (!(tmp->next = (t_list *)(malloc(sizeof(t_list)))))
 			return (NULL);

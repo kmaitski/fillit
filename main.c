@@ -19,11 +19,9 @@ int	main(int argc, char **argv)
 	t_list	*head_node;
 	int		board_size;
 	int		pieces;
-	char	**result;
 
 	if (argc != 2)
 		error();
-	result = NULL;
 	read_string = open_read(argv[1]);
 	if (validate(read_string))
 		error();

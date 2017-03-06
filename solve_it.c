@@ -125,6 +125,5 @@ void	solve_it(char **board, int board_size, t_list *node, int pieces, t_list *st
 		y++;
 	}
 	board_size++;
-	board = map_creator(board_size);
-	solve_it(board, board_size, store_head, store_pieces, store_head, store_pieces);
+	solve_it(map_creator(board_size), board_size, store_head, store_pieces, store_head, store_pieces);
 }
