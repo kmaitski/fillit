@@ -31,13 +31,13 @@ int	main(int argc, char **argv)
 	head_node = create_linked_list(read_string, pieces);
 	board_size = get_board_size(pieces);
 	array = map_creator(board_size);
-	result = solve_it(array, board_size, head_node, pieces);
+	solve_it(array, board_size, head_node, pieces, head_node, pieces);
 //	while(!result)
 //	{
 //		board_size++;
 //		array = map_creator(board_size);
 //		result = solve_it(array, board_size, head_node, pieces);
 //	}
-	print_3d_array(result);
+//	print_3d_array(result);
 	return (0);
 }

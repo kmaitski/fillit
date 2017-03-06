@@ -41,7 +41,7 @@ void	error(void);
 t_list	*create_linked_list(char *str, int pieces);
 int		get_board_size(int pieces);
 char	**map_creator(int square_size);
-char	**solve_it(char **board, int board_size, t_list *node, int pieces);
+void	solve_it(char **board, int board_size, t_list *node, int pieces, t_list *store_head, int store_pieces);
 
 
 #endif

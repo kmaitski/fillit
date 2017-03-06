@@ -12,6 +12,26 @@
 
 #include "fillit.h"
 
+char	**reset_board(char **wrong_board, t_list *node, int board_size)
+{
+	int	x;
+	int	y;
+
+	y = 0;
+	while (y < board_size)
+	{
+		x = 0;
+		while (x < board_size)
+		{
+			if (node->c == wrong_board[y][x])
+				wrong_board[y][x] = '.';
+			x++;
+		}
+		y++;
+	}
+	return (wrong_board);
+}
+
 char	**bigger_board(char **old_board, int board_size)
 {
 	char	**new_board;
@@ -101,19 +121,15 @@ char	**place_piece(char **board, t_list *node, int board_size)
 
 
 
-char	**solve_it(char **board, int board_size, t_list *node, int pieces)
+void	solve_it(char **board, int board_size, t_list *node, int pieces, t_list *store_head, int store_pieces)
 {
 	int	x;
 	int	y;
 	int	i;
 	char	**result;
 	char	**tmp;
-	int		store_pieces;
-	t_list	*store_head;
 
 	y = 0;
-	store_head = node;
-	store_pieces = pieces;
 	result = NULL;
 //	printf("%s", board[0]);
 	while (y < board_size)
@@ -124,24 +140,47 @@ char	**solve_it(char **board, int board_size, t_list *node, int pieces)
 			node = move_piece(node, x, y);
 			if (!check_place_piece(node, board, board_size))
 			{
+//				printf("%d", pieces);
 				tmp = place_piece(board, node, board_size);
 				pieces--;
-				result = solve_it(tmp, board_size, node->next, pieces);
-				printf("%d", pieces);
 				if (pieces == 0)
-					return (result);
-
-//				if (node->next)
+				{
+					print_3d_array(tmp);
+					exit(0);
+				}
+				if (node->next)
 //				{
-//					result = solve_it(tmp, board_size, node->next, pieces);
+					solve_it(tmp, board_size, node->next, pieces, store_head, store_pieces);
 //					if (pieces == 0)
 //						return (result);
 //				}
+//				else
+//				{
+//					reset_board(tmp, node, board_size);
+//					board_size++;
+//					board = map_creator(board_size);
+//					solve_it(board, board_size, store_head, store_pieces);
+//					printf("%d", 1);
+//				}
+//
+//
 			}
 			x++;
 		}
 		y++;
 	}
+//	printf("%c", node->c);
+//	if (node->next == NULL)
+//	{
+//	reset_board(tmp, node, board_size);
+		board_size++;
+//		printf("%d", board_size);
+		board = map_creator(board_size);
+//		printf("%s", board[1]);
+//		printf("%d", store_pieces);
+		solve_it(board, board_size, store_head, store_pieces, store_head, store_pieces);
+//					printf("%d", 1);
+//	}
 //	printf("%d", pieces);
 //	if (pieces == 0)
 //		return (tmp);
@@ -158,5 +197,5 @@ char	**solve_it(char **board, int board_size, t_list *node, int pieces)
 //		solve_it(board, board_size, store_head, store_pieces);
 //	}
 //	printf("%d", 1);
-	return (board);
+//	return (NULL);
 }
