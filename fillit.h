@@ -17,7 +17,7 @@
 # include <fcntl.h>
 # include <stdio.h>
 # include <stdlib.h>
-# define index 0
+# define buf_size 21
 
 typedef struct		s_list
 {

@@ -32,7 +32,6 @@ int	main(int argc, char **argv)
 	board_size = get_board_size(pieces);
 	while (i == 0)
 	{
-//		printf("%d", 1);
 		array = map_creator(board_size);
 		i = solve_it(array, board_size, head_node, pieces);
 		board_size++;

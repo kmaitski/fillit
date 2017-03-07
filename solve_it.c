@@ -114,11 +114,9 @@ int	solve_it(char **board, int board_size, t_list *node, int pieces)
 {
 	int	x;
 	int	y;
-	char	**result;
 	char	**tmp;
 
 	y = 0;
-	result = NULL;
 	while (y < board_size)
 	{
 		x = 0;
@@ -129,16 +127,15 @@ int	solve_it(char **board, int board_size, t_list *node, int pieces)
 			{
 				tmp = place_piece(board, node, board_size);
 				pieces--;
+				if (node->next)
+					solve_it(tmp, board_size, node->next, pieces);
 				if (pieces == 0)
 				{
 					print_3d_array(tmp);
 					exit(0);
 				}
-				if (node->next)
-					solve_it(tmp, board_size, node->next, pieces);
-//				printf("%s", tmp[0]);
 				tmp = remove_piece(tmp, board_size, node);
-				solve_it(tmp, board_size, node->next, pieces);
+				pieces++;
 			}
 			x++;
 		}

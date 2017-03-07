@@ -14,23 +14,20 @@
 
 char	*open_read(char *file)
 {
-	int		x;
 	int		fd;
-	char	buf[1];
-	char	tmp[545];
-	int	c;
+	char	*buf;
+	char	*tmp;
+	int	bytes_read;
 
-	c = 0;
 	if ((fd = open(file, O_RDONLY)) < 0)
 		error();
-	while ((x = read(fd, buf, 1)) > 0)
-	{
-		tmp[c++] = buf[0];
-		if (c > 545)
-			error();
-	}
-	tmp[c] = '\0';
+	tmp = ft_strnew(0);
+	buf = ft_strnew(2);
+	while ((bytes_read = read(fd, buf, 1)) > 0)
+		tmp = ft_strjoin(tmp, buf);
+	if (ft_strlen(tmp) > 545)
+		error();
 	if (close(fd) < 0)
 		error();
-	return (ft_strdup(tmp));
+	return (tmp);
 }

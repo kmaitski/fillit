@@ -48,8 +48,7 @@ int	validate(char *read_string)
 	x = 0;
 	if (!(pieces = quick_check(read_string)))
 		error();
-//	printf("%s", ft_strsub(read_string, x, 21));
-	while (check_piece(ft_strsub(read_string, x, 21)))
+	while (check_piece(ft_strsub(read_string, x, 20)))
 	{
 		x = x + 21;
 		pieces--;
