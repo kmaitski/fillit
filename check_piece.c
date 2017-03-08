@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_piece.c                                      :+:      :+:    :+:   */
+/*   iheck_piece.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kmaitski <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,105 +12,106 @@
 
 #include "fillit.h"
 
-int		check_piece(char *str)
+int		check_piece2(char *piece)
 {
-	int	c;
+	int	i;
 
-	c = 0;
-	if (str[c] != '#' && str[c] != '.')
+	i = 0;
+	while (piece[i] != '\0')
+	{
+		if (piece[i] == '#')
+		{
+			if (piece[i + 5] == '#' && piece[i + 6] == '#' && piece[i + 11] == '#')
+				return (1);
+			if (piece[i + 1] == '#' && piece[i + 5] == '#' && piece[i + 6] == '#')
+				return (1);
+			if (piece[i + 5] == '#' && piece[i + 6] == '#' && piece[i + 10] == '#')
+				return (1);
+			if (piece[i + 1] == '#' && piece[i + 2] == '#' && piece[i + 6] == '#')
+				return (1);
+			if (piece[i + 4] == '#' && piece[i + 5] == '#' && piece[i + 10] == '#')
+				return (1);
+			if (piece[i + 4] == '#' && piece[i + 5] == '#' && piece[i + 6] == '#')
+				return (1);
+		}
+		i++;
+	}
+	return (0);
+}
+
+int		check_piece3(char *piece)
+{
+	int	i;
+
+	i = 0;
+	while (piece[i] != '\0')
+	{
+		if (piece[i] == '#')
+		{
+			if (piece[i + 5] == '#' && piece[i + 10] == '#' && piece[i + 11] == '#')
+				return (1);
+			if (piece[i + 5] == '#' && piece[i + 9] == '#' && piece[i + 10] == '#')
+				return (1);
+			if (piece[i + 1] == '#' && piece[i + 2] == '#' && piece[i + 5] == '#')
+				return (1);
+			if (piece[i + 1] == '#' && piece[i + 2] == '#' && piece[i + 7] == '#')
+				return (1);
+			if (piece[i + 5] == '#' && piece[i + 6] == '#' && piece[i + 7] == '#')
+				return (1);
+		}
+		i++;
+	}
+	return (0);
+}
+
+
+int		check_piece4(char *piece)
+{
+	int	i;
+
+	i = 0;
+	while (piece[i] != '\0')
+	{
+		if (piece[i] == '#')
+		{
+			if (piece[i + 3] == '#' && piece[i + 4] == '#' && piece[i + 5] == '#')
+				return (1);
+			if (piece[i + 1] == '#' && piece[i + 6] == '#' && piece[i + 11] == '#')
+				return (1);
+			if (piece[i + 1] == '#' && piece[i + 5] == '#' && piece[i + 10] == '#')
+				return (1);
+			if (piece[i + 4] == '#' && piece[i + 5] == '#' && piece[i + 9] == '#')
+				return (1);
+		}
+		i++;
+	}
+	return (0);
+}
+
+int		check_piece(char *piece)
+{
+	int	i;
+
+	i = 0;
+	if (piece[i] != '#' && piece[i] != '.')
 		return (0);
-	while (str[c] != '\0')
+	while (piece[i] != '\0')
 	{
-		if (str[c] == '#')
+		if (piece[i] == '#')
 		{
-			if (str[c + 1] == '#' && str[c + 2] == '#' && str[c + 3] == '#')
+			if (piece[i + 1] == '#' && piece[i + 2] == '#' && piece[i + 3] == '#')
 				return (1);
-			if (str[c + 5] == '#' && str[c + 10] == '#' && str[c + 15] == '#')
+			if (piece[i + 5] == '#' && piece[i + 10] == '#' && piece[i + 15] == '#')
 				return (1);
-			if (str[c + 1] == '#' && str[c + 4] == '#' && str[c + 5] == '#')
+			if (piece[i + 1] == '#' && piece[i + 4] == '#' && piece[i + 5] == '#')
 				return (1);
-			if (str[c + 1] == '#' && str[c + 6] == '#' && str[c + 7] == '#')
+			if (piece[i + 1] == '#' && piece[i + 6] == '#' && piece[i + 7] == '#')
 				return (1);
 		}
-		c++;
+		i++;
 	}
-	if (check_piece2(str) == 1 || check_piece3(str) == 1
-			|| check_piece4(str) == 1)
+	if (check_piece2(piece) == 1 || check_piece3(piece) == 1
+			|| check_piece4(piece) == 1)
 		return (1);
-	return (0);
-}
-
-int		check_piece2(char *str)
-{
-	int	c;
-
-	c = 0;
-	while (str[c] != '\0')
-	{
-		if (str[c] == '#')
-		{
-			if (str[c + 5] == '#' && str[c + 6] == '#' && str[c + 11] == '#')
-				return (1);
-			if (str[c + 1] == '#' && str[c + 5] == '#' && str[c + 6] == '#')
-				return (1);
-			if (str[c + 5] == '#' && str[c + 6] == '#' && str[c + 10] == '#')
-				return (1);
-			if (str[c + 1] == '#' && str[c + 2] == '#' && str[c + 6] == '#')
-				return (1);
-			if (str[c + 4] == '#' && str[c + 5] == '#' && str[c + 10] == '#')
-				return (1);
-			if (str[c + 4] == '#' && str[c + 5] == '#' && str[c + 6] == '#')
-				return (1);
-		}
-		c++;
-	}
-	return (0);
-}
-
-int		check_piece3(char *str)
-{
-	int	c;
-
-	c = 0;
-	while (str[c] != '\0')
-	{
-		if (str[c] == '#')
-		{
-			if (str[c + 5] == '#' && str[c + 10] == '#' && str[c + 11] == '#')
-				return (1);
-			if (str[c + 5] == '#' && str[c + 9] == '#' && str[c + 10] == '#')
-				return (1);
-			if (str[c + 1] == '#' && str[c + 2] == '#' && str[c + 5] == '#')
-				return (1);
-			if (str[c + 1] == '#' && str[c + 2] == '#' && str[c + 7] == '#')
-				return (1);
-			if (str[c + 5] == '#' && str[c + 6] == '#' && str[c + 7] == '#')
-				return (1);
-		}
-		c++;
-	}
-	return (0);
-}
-
-int		check_piece4(char *str)
-{
-	int	c;
-
-	c = 0;
-	while (str[c] != '\0')
-	{
-		if (str[c] == '#')
-		{
-			if (str[c + 3] == '#' && str[c + 4] == '#' && str[c + 5] == '#')
-				return (1);
-			if (str[c + 1] == '#' && str[c + 6] == '#' && str[c + 11] == '#')
-				return (1);
-			if (str[c + 1] == '#' && str[c + 5] == '#' && str[c + 10] == '#')
-				return (1);
-			if (str[c + 4] == '#' && str[c + 5] == '#' && str[c + 9] == '#')
-				return (1);
-		}
-		c++;
-	}
 	return (0);
 }

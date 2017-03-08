@@ -1,34 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_3d_array.c                                   :+:      :+:    :+:   */
+/*   solver_main.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vmakarov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/02/18 23:24:21 by vmakarov          #+#    #+#             */
-/*   Updated: 2017/03/02 16:09:49 by kmaitski         ###   ########.fr       */
+/*   Created: 2017/02/28 18:26:47 by vmakarov          #+#    #+#             */
+/*   Updated: 2017/03/02 16:00:31 by kmaitski         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-void	print_3d_array(char **array)
+char	**board_creator(int board_size)
 {
-	int j;
-	int k;
+	char **result;
+	int row;
+	int row_size;
 
-	if (array == NULL)
-		error();
-	j = 0;
-	while (array[j] != '\0')
-	{
-		k = 0;
-		while (array[j][k] != '\0')
-		{
-			ft_putchar(array[j][k]);
-			k++;
-		}
-		ft_putchar('\n');
-		j++;
-	}
+	row = 0;
+	row_size = board_size;
+	if (!(result = (char **)malloc(sizeof(char *) * (board_size + 1))))
+		return (NULL);
+	while (board_size--)
+		result[row++] = ft_memset(ft_strnew(row_size), '.', row_size);;
+	result[row] = NULL;
+	return (result);
 }

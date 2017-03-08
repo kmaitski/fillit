@@ -14,38 +14,38 @@
 
 int	quick_check(char *read_string)
 {
-	int	pieces;
-	int	lines;
-	int	blanks;
+	int	hashes;
+	int	new_lines;
+	int	dots;
 
-	pieces = 0;
-	lines = 0;
-	blanks = 0;
-	while (*read_string != '\0')
+	hashes = 0;
+	new_lines = 0;
+	dots = 0;
+	while (*read_string)
 	{
 		if (*read_string == '.')
-			blanks++;
+			dots++;
 		if (*read_string == '#')
-			pieces++;
+			hashes++;
 		if (*read_string == '\n')
-			lines++;
+			new_lines++;
 		read_string++;
 	}
-	if (pieces % 4 || blanks % 4 || ++lines % 5)
+	if (hashes % 4 || dots % 4 || ++new_lines % 5)
 		error();
-	if (pieces / 4 != lines / 5)
+	if (hashes / 4 != new_lines / 5)
 		error();
-	if (blanks / pieces != 3)
+	if (dots / hashes != 3)
 		error();
-	return (lines / 5);
+	return (new_lines / 5);
 }
 
 int	validate(char *read_string)
 {
 	int		pieces;
-	int		x;
+	int		i;
 
-	x = 0;
+	i = 0;
 	if (!(pieces = quick_check(read_string)))
 		error();
 	while (check_piece(ft_strsub(read_string, x, 20)))

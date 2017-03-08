@@ -15,13 +15,13 @@
 int	main(int argc, char **argv)
 {
 	char	*read_string;
-	char	**array;
+	char	**board;
 	t_list	*head_node;
 	int		board_size;
 	int		pieces;
-	int		i;
+	int		result;
 
-	i = 0;
+	result = 0;
 	if (argc != 2)
 		error();
 	read_string = open_read(argv[1]);
@@ -30,10 +30,10 @@ int	main(int argc, char **argv)
 	pieces = quick_check(read_string);
 	head_node = create_linked_list(read_string, pieces);
 	board_size = get_board_size(pieces);
-	while (i == 0)
+	while (!result)
 	{
-		array = map_creator(board_size);
-		i = solve_it(array, board_size, head_node, pieces);
+		board = board_creator(board_size);
+		result = solve_it(board, board_size, head_node, pieces);
 		board_size++;
 	}
 	return (0);

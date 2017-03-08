@@ -1,25 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putendl_fd.c                                    :+:      :+:    :+:   */
+/*   print_3d_board.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kmaitski <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: vmakarov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/01/06 09:05:17 by kmaitski          #+#    #+#             */
-/*   Updated: 2017/02/03 13:41:50 by kmaitski         ###   ########.fr       */
+/*   Created: 2017/02/18 23:24:21 by vmakarov          #+#    #+#             */
+/*   Updated: 2017/03/02 16:09:49 by kmaitski         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "fillit.h"
 
-void	ft_putendl_fd(char const *s, int fd)
+void	print_result(char **board)
 {
-	if (!s || !fd)
-		return ;
-	while (*s != 0)
+	int i;
+	int j;
+
+	if (board == NULL)
+		error();
+	i = 0;
+	while (board[i] != '\0')
 	{
-		ft_putchar_fd(*s, fd);
-		s++;
+		j = 0;
+		while (board[i][j] != '\0')
+		{
+			ft_putchar(board[i][j]);
+			j++;
+		}
+		ft_putchar('\n');
+		i++;
 	}
-	ft_putchar_fd('\n', fd);
 }

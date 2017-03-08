@@ -12,53 +12,53 @@
 
 #include "fillit.h"
 
-t_list	*move_piece(t_list *node, int x, int y)
+t_list	*move_piece(t_list *node, int column_increase, int row_increase)
 {
-	int	x_min;
-	int	y_min;
+	int	column_minimum_coordinate;
+	int	row_minimum_coordinate;
 	int	i;
 
-	x_min = 2147483647;
-	y_min = 2147483647;
+	column_minimum_coordinate = 2147483647;
+	row_minimum_coordinate = 2147483647;
 	i = 0;
 	while (i < 4)
 	{
-		if (node->x_cor[i] < x_min)
-			x_min = node->x_cor[i];
-		if (node->y_cor[i] < y_min)
-			y_min = node->y_cor[i];
+		if (node->column_coordinates[i] < column_minimum_coordinate)
+			column_minimum_coordinate = node->column_coordinates[i];
+		if (node->row_coordinates[i] < row_minimum_coordinate)
+			row_minimum_coordinate = node->row_coordinates[i];
 		i++;
 	}
 	i = 0;
 	while (i < 4)
 	{
-		node->x_cor[i] = node->x_cor[i] - x_min + x;
-		node->y_cor[i] = node->y_cor[i] - y_min + y;
+		node->column_coordinates[i] = node->column_coordinates[i] - column_minimum_coordinate + column_increase;
+		node->row_coordinates[i] = node->row_coordinates[i] - row_minimum_coordinate + row_increase;
 		i++;
 	}
 	return (node);
 }
 
-int	check_place_piece(t_list *node, char **board, int board_size)
+int	check_new_coordinates(t_list *node, char **board, int board_size)
 {
-	int	x;
-	int	y;
+	int	column;
+	int	row;
 	int	i;
 
-	y = 0;
+	row = 0;
 	i = 0;
-	while (y < board_size)
+	while (row < board_size)
 	{
-		x = 0;
-		while (x < board_size)
+		column = 0;
+		while (column < board_size)
 		{
-			if (node->x_cor[i] == x && node->y_cor[i] == y && board[y][x] != '.')
+			if (node->column_coordinates[i] == column && node->row_coordinates[i] == row && board[row][column] != '.')
 				return (1);
-			if (node->x_cor[i] == x && node->y_cor[i] == y)
+			if (node->column_coordinates[i] == column && node->row_coordinates[i] == row)
 				i++;
-			x++;
+			column++;
 		}
-		y++;
+		row++;
 	}
 	if (i == 4)
 		return (0);
@@ -67,79 +67,79 @@ int	check_place_piece(t_list *node, char **board, int board_size)
 
 char	**place_piece(char **board, t_list *node, int board_size)
 {
-	int	x;
-	int	y;
+	int	column;
+	int	row;
 	int	i;
 
-	y = 0;
+	row = 0;
 	i = 0;
-	while (y < board_size)
+	while (row < board_size)
 	{
-		x = 0;
-		while (x < board_size)
+		column = 0;
+		while (column < board_size)
 		{
-			if (node->x_cor[i] == x && node->y_cor[i] == y)
+			if (node->column_coordinates[i] == column && node->row_coordinates[i] == row)
 			{
-				board[y][x] = node->c;
+				board[row][column] = node->letter;
 				i++;
 			}
-			x++;
+			column++;
 		}
-		y++;
+		row++;
 	}
 	return (board);
 }
 
 char	**remove_piece(char **board, int board_size, t_list *node)
 {
-	int	x;
-	int	y;
+	int	column;
+	int	row;
 
-	y = 0;
-	while (y < board_size)
+	row = 0;
+	while (row < board_size)
 	{
-		x = 0;
-		while (x < board_size)
+		column = 0;
+		while (column < board_size)
 		{
-			if (board[y][x] == node->c)
-				board[y][x] = '.';
-			x++;
+			if (board[row][column] == node->letter)
+				board[row][column] = '.';
+			column++;
 		}
-		y++;
+		row++;
 	}
 	return (board);
 }
 
 int	solve_it(char **board, int board_size, t_list *node, int pieces)
 {
-	int	x;
-	int	y;
-	char	**tmp;
+	int	column_increase;
+	int	row_increase;
+	char	**result;
 
-	y = 0;
-	while (y < board_size)
+	row_increase = 0;
+	while (row_increase < board_size)
 	{
-		x = 0;
-		while (x < board_size)
+		column_increase = 0;
+		while (column_increase < board_size)
 		{
-			node = move_piece(node, x, y);
-			if (!check_place_piece(node, board, board_size))
+			node = move_piece(node, column_increase, row_increase);
+			if (!check_new_coordinates(node, board, board_size))
 			{
-				tmp = place_piece(board, node, board_size);
+				result = place_piece(board, node, board_size);
 				pieces--;
 				if (node->next)
-					solve_it(tmp, board_size, node->next, pieces);
+					solve_it(result, board_size, node->next, pieces);
 				if (pieces == 0)
 				{
-					print_3d_array(tmp);
+					print_result(result);
 					exit(0);
 				}
-				tmp = remove_piece(tmp, board_size, node);
+				result = remove_piece(result, board_size, node);
 				pieces++;
 			}
-			x++;
+			column_increase++;
 		}
-		y++;
+		row_increase++;
 	}
 	return (0);
 }
