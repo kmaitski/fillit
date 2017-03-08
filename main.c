@@ -6,7 +6,7 @@
 /*   By: kmaitski <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/22 20:16:22 by kmaitski          #+#    #+#             */
-/*   Updated: 2017/03/06 13:47:41 by kmaitski         ###   ########.fr       */
+/*   Updated: 2017/03/08 12:48:05 by kmaitski         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,22 +18,21 @@ int	main(int argc, char **argv)
 	char	**board;
 	t_list	*head_node;
 	int		board_size;
-	int		pieces;
 	int		result;
 
 	result = 0;
 	if (argc != 2)
-		error();
+		error_argc();
 	read_string = open_read(argv[1]);
 	if (validate(read_string))
 		error();
-	pieces = quick_check(read_string);
-	head_node = create_linked_list(read_string, pieces);
-	board_size = get_board_size(pieces);
+	head_node = create_linked_list(read_string, quick_check(read_string));
+	board_size = get_board_size(quick_check(read_string));
 	while (!result)
 	{
 		board = board_creator(board_size);
-		result = solve_it(board, board_size, head_node, pieces);
+		result = solve_it(board, board_size, head_node,
+				quick_check(read_string));
 		board_size++;
 	}
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: kmaitski <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/02 12:46:35 by kmaitski          #+#    #+#             */
-/*   Updated: 2017/02/02 15:11:38 by kmaitski         ###   ########.fr       */
+/*   Updated: 2017/03/08 10:47:24 by kmaitski         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 size_t	ft_strlcat(char *dest, const char *src, size_t n)
 {
-	int	c;
+	int		c;
 	size_t	dl;
 	size_t	sl;
-	int	a;
+	int		a;
 
 	c = 0;
 	dl = ft_strlen(dest);

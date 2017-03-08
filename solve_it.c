@@ -6,7 +6,7 @@
 /*   By: kmaitski <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/02 13:12:48 by kmaitski          #+#    #+#             */
-/*   Updated: 2017/03/06 15:20:48 by kmaitski         ###   ########.fr       */
+/*   Updated: 2017/03/08 12:43:54 by kmaitski         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,14 +32,16 @@ t_list	*move_piece(t_list *node, int column_increase, int row_increase)
 	i = 0;
 	while (i < 4)
 	{
-		node->column_coordinates[i] = node->column_coordinates[i] - column_minimum_coordinate + column_increase;
-		node->row_coordinates[i] = node->row_coordinates[i] - row_minimum_coordinate + row_increase;
+		node->column_coordinates[i] = node->column_coordinates[i]
+			- column_minimum_coordinate + column_increase;
+		node->row_coordinates[i] = node->row_coordinates[i]
+			- row_minimum_coordinate + row_increase;
 		i++;
 	}
 	return (node);
 }
 
-int	check_new_coordinates(t_list *node, char **board, int board_size)
+int		check_new_coordinates(t_list *node, char **board, int board_size)
 {
 	int	column;
 	int	row;
@@ -52,9 +54,12 @@ int	check_new_coordinates(t_list *node, char **board, int board_size)
 		column = 0;
 		while (column < board_size)
 		{
-			if (node->column_coordinates[i] == column && node->row_coordinates[i] == row && board[row][column] != '.')
+			if (node->column_coordinates[i] == column &&
+					node->row_coordinates[i] == row &&
+					board[row][column] != '.')
 				return (1);
-			if (node->column_coordinates[i] == column && node->row_coordinates[i] == row)
+			if (node->column_coordinates[i] == column &&
+					node->row_coordinates[i] == row)
 				i++;
 			column++;
 		}
@@ -78,7 +83,8 @@ char	**place_piece(char **board, t_list *node, int board_size)
 		column = 0;
 		while (column < board_size)
 		{
-			if (node->column_coordinates[i] == column && node->row_coordinates[i] == row)
+			if (node->column_coordinates[i] == column &&
+					node->row_coordinates[i] == row)
 			{
 				board[row][column] = node->letter;
 				i++;
@@ -110,11 +116,10 @@ char	**remove_piece(char **board, int board_size, t_list *node)
 	return (board);
 }
 
-int	solve_it(char **board, int board_size, t_list *node, int pieces)
+int		solve_it(char **board, int board_size, t_list *node, int pieces)
 {
-	int	column_increase;
-	int	row_increase;
-	char	**result;
+	int		column_increase;
+	int		row_increase;
 
 	row_increase = 0;
 	while (row_increase < board_size)
@@ -124,19 +129,7 @@ int	solve_it(char **board, int board_size, t_list *node, int pieces)
 		{
 			node = move_piece(node, column_increase, row_increase);
 			if (!check_new_coordinates(node, board, board_size))
-			{
-				result = place_piece(board, node, board_size);
-				pieces--;
-				if (node->next)
-					solve_it(result, board_size, node->next, pieces);
-				if (pieces == 0)
-				{
-					print_result(result);
-					exit(0);
-				}
-				result = remove_piece(result, board_size, node);
-				pieces++;
-			}
+				indirect_recursion(node, board, board_size, pieces);
 			column_increase++;
 		}
 		row_increase++;

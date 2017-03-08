@@ -1,25 +1,41 @@
-NAME = $(FILLIT)
-FLAGS = -Wall -Werror -Wextra
-CC = gcc $(FLAGS)
-RM = rm -rf
-HEAD = -Iincludes
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: vmakarov <marvin@42.fr>                    +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2017/03/08 11:30:38 by vmakarov          #+#    #+#              #
+#    Updated: 2017/03/08 12:45:54 by kmaitski         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
 
-SRC = check_piece.c main.c open_read.c print_3d_array.c split_3d.c validate.c\
+NAME = fillit
 
-OFILES = $(SRC:.c=.o)
+SRC = board_size.c create_linked_list.c main.c print_result.c validate.c\
+	  board_creator.c check_piece.c error.c open_read.c solve_it.c\
+	  indirect_recursion.c
+
+FLAG = gcc -c -g -Wall -Werror -Wextra
+
+OBJ = ${SRC:.c=.o}
+
+LIBFT = ./libft/libft.a
 
 all: $(NAME)
 
 $(NAME):
-	$(CC) $(SRC) $(HEAD)
+	cd libft && make && cd ..
+	$(FLAG) $(SRC)
+	gcc $(OBJ) -o $(NAME) $(LIBFT)
 
 clean:
-	$(RM) $(OFILES)
+	/bin/rm -f $(OBJ)
+	cd libft && make clean
 
-fclean:
-	clean
-	$(RM) $(NAME)
+fclean: clean
+	/bin/rm -f $(NAME)
+	cd libft && make fclean
 
 re: fclean all
-
-.PHONY: clean fclean re
+	cd libft && make re

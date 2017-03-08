@@ -6,17 +6,17 @@
 /*   By: kmaitski <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/02 13:13:09 by kmaitski          #+#    #+#             */
-/*   Updated: 2017/03/03 13:31:55 by kmaitski         ###   ########.fr       */
+/*   Updated: 2017/03/08 13:12:08 by kmaitski         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-t_list	*fill_arrays(t_list *node,  char **tetrimino)
+t_list	*fill_arrays(t_list *node, char **tetrimino)
 {
 	signed int	column;
 	signed int	row;
-	int	i;
+	int			i;
 
 	row = 0;
 	i = 0;
@@ -40,7 +40,7 @@ t_list	*fill_arrays(t_list *node,  char **tetrimino)
 
 t_list	*create_linked_list(char *read_string, int pieces)
 {
-	int	i;
+	int		i;
 	char	letter;
 	t_list	*head_node;
 	t_list	*node;

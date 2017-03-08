@@ -6,7 +6,7 @@
 /*   By: kmaitski <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/22 20:17:14 by kmaitski          #+#    #+#             */
-/*   Updated: 2017/03/02 13:58:59 by kmaitski         ###   ########.fr       */
+/*   Updated: 2017/03/08 10:35:33 by kmaitski         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ char	*open_read(char *file)
 	int		fd;
 	char	*buf;
 	char	*tmp;
-	int	bytes_read;
+	int		bytes_read;
 
 	if ((fd = open(file, O_RDONLY)) < 0)
 		error();
