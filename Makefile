@@ -16,26 +16,36 @@ SRC = board_size.c create_linked_list.c main.c print_result.c validate.c\
 	  board_creator.c check_piece.c error.c open_read.c solve_it.c\
 	  indirect_recursion.c
 
-FLAG = gcc -c -g -Wall -Werror -Wextra
+CC = gcc
+
+FLAGS = -c -g -Wall -Werror -Wextra
 
 OBJ = ${SRC:.c=.o}
 
 LIBFT = ./libft/libft.a
 
+DO = make
+
+GOTOLIB = cd libft
+
+UP = cd ..
+
+DEL = rm -f
+
 all: $(NAME)
 
 $(NAME):
-	cd libft && make && cd ..
-	$(FLAG) $(SRC)
-	gcc $(OBJ) -o $(NAME) $(LIBFT)
+	$(GOTOLIB) && $(DO) && $(UP)
+	$(CC) $(FLAGS) $(SRC)
+	$(CC) $(OBJ) -o $(NAME) $(LIBFT)
 
 clean:
-	/bin/rm -f $(OBJ)
-	cd libft && make clean
+	$(DEL) $(OBJ)
+	$(GOTOLIB) && $(DO) clean
 
 fclean: clean
-	/bin/rm -f $(NAME)
-	cd libft && make fclean
+	$(DEL) $(NAME)
+	$(GOTOLIB) && $(DO) fclean
 
 re: fclean all
-	cd libft && make re
+	$(GOTOLIB) && $(DO) re
