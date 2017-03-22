@@ -1,45 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strnstr.c                                       :+:      :+:    :+:   */
+/*   ft_strstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kmaitski <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: vmakarov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/02/02 13:18:53 by kmaitski          #+#    #+#             */
-/*   Updated: 2017/02/03 13:15:20 by kmaitski         ###   ########.fr       */
+/*   Created: 2017/02/02 14:21:01 by vmakarov          #+#    #+#             */
+/*   Updated: 2017/02/02 14:21:02 by vmakarov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int	is_needle_in_haystack(const char *haystack, const char *needle,
-		size_t l)
+char	*ft_strstr(const char *big, const char *little)
 {
-	size_t	c;
+	int i;
+	int j;
 
-	c = 0;
-	while (needle[c] != '\0' && haystack[c] == needle[c])
-		c++;
-	if (c == l)
-		return (1);
-	return (0);
-}
-
-char		*ft_strstr(const char *haystack, const char *needle)
-{
-	size_t	c;
-	size_t	l;
-
-	c = 0;
-	l = ft_strlen(needle);
-	if (needle[0] == '\0' || haystack == needle)
-		return ((char *)haystack);
-	while (haystack[c] != '\0')
+	i = 0;
+	if (*little == 0)
+		return ((char *)big);
+	while (big[i] != '\0')
 	{
-		if (haystack[c] == needle[0])
-			if (is_needle_in_haystack(&haystack[c], needle, l) == 1)
-				return ((char *)&haystack[c]);
-		c++;
+		j = 0;
+		while (big[i + j] == little[j])
+		{
+			j++;
+			if (little[j] == '\0')
+				return ((char *)&big[i]);
+		}
+		i++;
 	}
 	return (NULL);
 }

@@ -6,13 +6,13 @@
 /*   By: kmaitski <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/02 13:12:48 by kmaitski          #+#    #+#             */
-/*   Updated: 2017/03/08 12:43:54 by kmaitski         ###   ########.fr       */
+/*   Updated: 2017/03/11 16:12:33 by vmakarov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-t_list	*move_piece(t_list *node, int column_increase, int row_increase)
+t_fillit	*move_piece(t_fillit *node, int column_increase, int row_increase)
 {
 	int	column_minimum_coordinate;
 	int	row_minimum_coordinate;
@@ -41,7 +41,7 @@ t_list	*move_piece(t_list *node, int column_increase, int row_increase)
 	return (node);
 }
 
-int		check_new_coordinates(t_list *node, char **board, int board_size)
+int			check_new_coordinates(t_fillit *node, char **board, int board_size)
 {
 	int	column;
 	int	row;
@@ -70,7 +70,7 @@ int		check_new_coordinates(t_list *node, char **board, int board_size)
 	return (1);
 }
 
-char	**place_piece(char **board, t_list *node, int board_size)
+char		**place_piece(char **board, t_fillit *node, int board_size)
 {
 	int	column;
 	int	row;
@@ -96,7 +96,7 @@ char	**place_piece(char **board, t_list *node, int board_size)
 	return (board);
 }
 
-char	**remove_piece(char **board, int board_size, t_list *node)
+char		**remove_piece(char **board, int board_size, t_fillit *node)
 {
 	int	column;
 	int	row;
@@ -116,7 +116,7 @@ char	**remove_piece(char **board, int board_size, t_list *node)
 	return (board);
 }
 
-int		solve_it(char **board, int board_size, t_list *node, int pieces)
+int			solve_it(char **board, int board_size, t_fillit *node, int pieces)
 {
 	int		column_increase;
 	int		row_increase;

@@ -6,7 +6,7 @@
 /*   By: kmaitski <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/22 20:16:22 by kmaitski          #+#    #+#             */
-/*   Updated: 2017/03/08 12:48:05 by kmaitski         ###   ########.fr       */
+/*   Updated: 2017/03/11 16:11:24 by vmakarov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,11 @@
 
 int	main(int argc, char **argv)
 {
-	char	*read_string;
-	char	**board;
-	t_list	*head_node;
-	int		board_size;
-	int		result;
+	char		*read_string;
+	char		**board;
+	t_fillit	*head_node;
+	int			board_size;
+	int			result;
 
 	result = 0;
 	if (argc != 2)

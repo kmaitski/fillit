@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kmaitski <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: vmakarov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/02/02 13:36:13 by kmaitski          #+#    #+#             */
-/*   Updated: 2017/02/02 15:16:57 by kmaitski         ###   ########.fr       */
+/*   Created: 2017/02/02 14:57:31 by vmakarov          #+#    #+#             */
+/*   Updated: 2017/02/02 15:06:56 by vmakarov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,23 +14,29 @@
 
 int	ft_atoi(const char *str)
 {
-	int	nbr;
-	int	is_negative;
+	int	i;
+	int	flag;
+	int	res;
 
-	nbr = 0;
-	is_negative = 1;
-	if (!str)
-		return (0);
-	while (*str > 0 && *str < 33 && *str != '\e')
-		str++;
-	if (*str == '-')
-		is_negative = -1;
-	if (*str == '-' || *str == '+')
-		str++;
-	while (*str >= '0' && *str <= '9')
+	res = 0;
+	i = 0;
+	flag = 1;
+	while ((str[i] == '\n') || (str[i] == '\t') || (str[i] == '\v') ||
+			(str[i] == ' ') || (str[i] == '\f') || (str[i] == '\r'))
+		i++;
+	if (str[i] == 43 || str[i] == 45)
 	{
-		nbr = nbr * 10 + *str - '0';
-		str++;
+		if (str[i] == 45)
+			flag = -1;
+		i++;
 	}
-	return (is_negative * nbr);
+	while (str[i] && str[i] <= 57 && str[i] >= 48)
+	{
+		if (i >= 19 && flag == 1)
+			return (-1);
+		if (i >= 19 && flag == -1)
+			return (0);
+		res = res * 10 + str[i++] - '0';
+	}
+	return (res * flag);
 }

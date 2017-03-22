@@ -6,13 +6,13 @@
 /*   By: kmaitski <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/02 13:13:09 by kmaitski          #+#    #+#             */
-/*   Updated: 2017/03/08 13:12:08 by kmaitski         ###   ########.fr       */
+/*   Updated: 2017/03/22 15:27:40 by kmaitski         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-t_list	*fill_arrays(t_list *node, char **tetrimino)
+t_fillit	*fill_arrays(t_fillit *node, char **tetrimino)
 {
 	signed int	column;
 	signed int	row;
@@ -38,23 +38,23 @@ t_list	*fill_arrays(t_list *node, char **tetrimino)
 	return (node);
 }
 
-t_list	*create_linked_list(char *read_string, int pieces)
+t_fillit	*create_linked_list(char *read_string, int pieces)
 {
-	int		i;
-	char	letter;
-	t_list	*head_node;
-	t_list	*node;
+	int			i;
+	char		letter;
+	t_fillit	*head_node;
+	t_fillit	*node;
 
 	i = 0;
 	letter = 'A';
-	if (!(head_node = (t_list *)malloc(sizeof(t_list))))
+	if (!(head_node = (t_fillit *)malloc(sizeof(t_fillit))))
 		return (NULL);
 	node = head_node;
 	while (pieces--)
 	{
 		fill_arrays(node, ft_strsplit(ft_strsub(read_string, i, 20), '\n'));
 		i = i + 21;
-		if (!(node->next = (t_list *)(malloc(sizeof(t_list)))))
+		if (!(node->next = (t_fillit *)(malloc(sizeof(t_fillit)))))
 			return (NULL);
 		node->letter = letter;
 		node = node->next;

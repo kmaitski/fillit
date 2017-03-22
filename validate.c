@@ -6,7 +6,7 @@
 /*   By: kmaitski <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/15 12:56:08 by kmaitski          #+#    #+#             */
-/*   Updated: 2017/03/08 13:24:50 by kmaitski         ###   ########.fr       */
+/*   Updated: 2017/03/08 15:32:04 by vmakarov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,18 +44,16 @@ int	validate(char *read_string)
 {
 	int		pieces;
 	int		i;
-	char	*str;
 
-	i = 0;
 	if (!(pieces = quick_check(read_string)))
 		error();
-	str = ft_strsub(read_string, i, 21);
-	while (check_piece(str))
+	i = 0;
+	while (check_piece(ft_strsub(read_string, i, 20)))
 	{
-		if (str[20] != '\n')
-			error();
-		str = ft_strsub(read_string, i, 21);
 		i = i + 21;
+		if (read_string[i - 1] != '\0'
+			&& read_string[i - 1] != '\n')
+			error();
 		pieces--;
 	}
 	if (pieces == 0)

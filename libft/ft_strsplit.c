@@ -3,76 +3,83 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strsplit.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kmaitski <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: vmakarov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/01/11 15:54:57 by kmaitski          #+#    #+#             */
-/*   Updated: 2017/02/09 20:10:10 by kmaitski         ###   ########.fr       */
+/*   Created: 2017/02/02 15:15:57 by vmakarov          #+#    #+#             */
+/*   Updated: 2017/02/02 15:24:20 by vmakarov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static size_t	word_count(char const *s, char c)
+static int	ft_len(const char *s, char c, int position_beg)
 {
-	int	x;
-	int	w;
+	int length;
 
-	x = 0;
-	w = 0;
-	while (s[x] != '\0')
+	length = 0;
+	while (s[position_beg] != c && s[position_beg])
 	{
-		if ((s[x] != c && s[x + 1] == c) || (s[x + 1] == '\0' && s[x] != c))
-			w++;
-		x++;
+		length++;
+		position_beg++;
 	}
-	return (w);
+	return (length);
 }
 
-static size_t	word_length(char const *s, char c)
+static int	ft_position_beg(const char *s, char c, int word_number)
 {
-	int	x;
+	int j;
+	int position;
 
-	x = 0;
-	while (s[x] != '\0' && s[x] != c)
-		x++;
-	return (x);
-}
-
-static char		**populate_2d(char const *s, char **arr, char c)
-{
-	size_t	x;
-	size_t	l;
-	size_t	w;
-
-	x = 0;
-	w = 0;
-	while (s[x] != '\0')
+	position = 0;
+	j = 0;
+	while (word_number > 0)
 	{
-		if (s[x] == c)
-			x++;
-		else
-		{
-			l = word_length(&s[x], c);
-			if (!(arr[w] = ft_strsub(s, x, l)))
-				return (NULL);
-			x = x + l;
-			w++;
-		}
+		if ((s[j - 1] == c && s[j] != c) || j == 0)
+			position = j;
+		if ((s[j] != c) && ((s[j + 1] == c) || (s[j + 1] == '\0')))
+			word_number--;
+		j++;
 	}
-	arr[w] = NULL;
-	return (arr);
+	return (position);
 }
 
-char			**ft_strsplit(char const *s, char c)
+static int	ft_size_of_array(const char *s, char c)
 {
-	size_t	x;
-	char	**fresh;
+	int i;
+	int size_array;
 
-	if (!s || !c)
+	size_array = 0;
+	i = 0;
+	if (!s)
+		return (0);
+	while (s[i])
+	{
+		if ((s[i] != c) && ((s[i + 1] == c) || (s[i + 1] == '\0')))
+			size_array++;
+		i++;
+	}
+	return (size_array);
+}
+
+char		**ft_strsplit(const char *s, char c)
+{
+	int		size_array;
+	char	**result;
+	int		word_number;
+
+	if (s == NULL)
 		return (NULL);
-	x = word_count(s, c);
-	if (!(fresh = (char **)malloc(sizeof(char*) * (x + 1))))
+	size_array = ft_size_of_array(s, c);
+	if (!(result = (char **)malloc(sizeof((char *)s) * (size_array + 1))))
 		return (NULL);
-	populate_2d(s, fresh, c);
-	return (fresh);
+	word_number = 0;
+	while (size_array >= 1)
+	{
+		result[word_number] = ft_strsub(s, ft_position_beg(s, c, word_number
+					+ 1), ft_len(s, c, ft_position_beg(s, c, word_number + 1)));
+		size_array--;
+		word_number++;
+	}
+	result[word_number] = NULL;
+	return (result);
 }
